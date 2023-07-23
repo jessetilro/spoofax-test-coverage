@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# echo "running benchmark nabl2 weblab"
+# bin/benchmark-nabl2-weblab
+# mv output.csv output-nabl2-weblab.csv
+
+# echo "running benchmark nabl2 icedust"
+# bin/benchmark-nabl2-icedust
+# mv output.csv output-nabl2-icedust.csv
+
+echo "running benchmark statix accounting"
+bin/benchmark-statix-accounting
+mv output.csv output-statix-accounting.csv
+
+echo "running benchmark statix icedust"
+bin/benchmark-statix-icedust
+mv output.csv output-statix-icedust.csv
+
+echo "running benchmark statix weblab"
+bin/benchmark-statix-weblab
+mv output.csv output-statix-weblab.csv
+
+

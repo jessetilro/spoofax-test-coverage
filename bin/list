@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'tty-prompt'
+end
+
+prompt = TTY::Prompt.new
+
+path = prompt.ask('Which language project?')
+
+unless File.directory?(path)
+  puts 'Could not locate language project'
+  exit(1)
+end
+
+Dir.chdir(path) do
+  paths = Dir.glob('**/*.stx').reject { |x| x.include?('src-gen/') }
+
+  if paths.empty?
+    puts 'No Statix files found in language project'
+    exit
+  end
+
+  selected_paths = prompt.multi_select('Which files to you want to include?', paths, per_page: 20,
+      cycle: true, echo: false) do |menu|
+    menu.default(*1.upto(paths.size))
+  end
+
+  functional_rule_heads = {}
+
+  selected_paths.each do |path|
+    spec = File.read(path)
+    matches = spec.to_enum(:scan, /([a-zA-Z]+\([^\n]*\))[^.:=]*(?:=|:-)(?!=)[^.]*\./m)
+        .map { Regexp.last_match }
+    functional_rule_heads[path] = matches.map { |x| x[1] }
+  end
+
+  pp functional_rule_heads
+end

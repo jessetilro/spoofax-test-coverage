@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.metaborg</groupId>
+        <artifactId>parent.java</artifactId>
+        <version>2.6.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>nabl2.benchmark</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <jmh.version>1.34</jmh.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <benchmark.args></benchmark.args>
+        <args></args>
+    </properties>
+
+    <repositories>
+        <repository>
+        <id>metaborg-release-repo</id>
+        <url>https://artifacts.metaborg.org/content/repositories/releases/</url>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        </repository>
+        <repository>
+        <id>metaborg-snapshot-repo</id>
+        <url>https://artifacts.metaborg.org/content/repositories/snapshots/</url>
+        <releases>
+            <enabled>false</enabled>
+        </releases>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>${jmh.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>${jmh.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.metaborg</groupId>
+            <artifactId>org.metaborg.core</artifactId>
+            <version>2.6.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.metaborg</groupId>
+            <artifactId>org.metaborg.spoofax.core</artifactId>
+            <version>2.6.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.metaborg</groupId>
+            <artifactId>org.metaborg.spt.core</artifactId>
+            <version>2.6.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-processor-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>run</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>mb.nabl2.benchmark.AnalysisRun</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                            <commandlineArgs>
+                                ${args}
+                            </commandlineArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>benchmark</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <commandlineArgs>
+                                -classpath %classpath
+                                org.openjdk.jmh.Main
+                                -jvmArgs -Xmx6G
+                                -rff output.csv
+                                mb.nabl2.benchmark.AnalysisBenchmark
+                                ${benchmark.args}
+                            </commandlineArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>java</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <configuration>-->
+<!--                    <mainClass>mb.nabl2.benchmark.AnalysisRun</mainClass>-->
+<!--                    <cleanupDaemonThreads>false</cleanupDaemonThreads>-->
+<!--                    <commandlineArgs>-->
+<!--                        ${args}-->
+<!--                    </commandlineArgs>-->
+<!--                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+</project>

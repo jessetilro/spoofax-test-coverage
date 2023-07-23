@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mvn clean verify exec:exec@benchmark -Dbenchmark.args="-p languagePath=/home/jesse/source/IceDust/icedust -p programPath=/home/jesse/source/thesis-benchmark-dataset/accounting/accounting.dev"
