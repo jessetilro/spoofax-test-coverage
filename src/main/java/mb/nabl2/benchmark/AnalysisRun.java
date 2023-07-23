@@ -1,7 +1,12 @@
 package mb.nabl2.benchmark;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.vfs2.FileObject;
 import org.metaborg.core.analysis.AnalyzerFacet;
@@ -25,6 +30,8 @@ import org.metaborg.spoofax.core.unit.ISpoofaxInputUnit;
 import org.metaborg.spoofax.core.unit.ISpoofaxParseUnit;
 import org.metaborg.util.concurrent.IClosableLock;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.google.inject.Injector;
 
 import org.metaborg.spt.core.extract.ISpoofaxTestCaseExtractor;
@@ -54,10 +61,6 @@ public class AnalysisRun {
 
             IProject sptProject = cli.getOrCreateProject(sptDir);
 
-            FileObject testSuiteFile = spoofax.resourceService.resolve(testSuitePath);
-            String text = spoofax.sourceTextService.text(testSuiteFile);
-            ISpoofaxInputUnit testSuite = spoofax.unitService.inputUnit(testSuiteFile, text, spt, spt);
-
             final Injector injector = spoofax.injector;
             final ISpoofaxTestCaseExtractor extractor = injector.getInstance(SpoofaxTestCaseExtractor.class);
             // ISpoofaxFragmentBuilder fragmentBuilder = new SpoofaxTracingFragmentBuilder(spoofax.tracingService);
@@ -67,25 +70,42 @@ public class AnalysisRun {
             // ISpoofaxTestCaseExtractor extractor = new SpoofaxTestCaseExtractor(
             //     spoofax.syntaxService, spoofax.analysisService, spoofax.contextService, testCaseBuilder);
 
-            ISpoofaxTestCaseExtractionResult result = extractor.extract(testSuite, sptProject);
+            Set<File> testSuites = Stream.of(new File(testSuitePath).listFiles())
+                .filter(file -> !file.isDirectory())
+                .collect(Collectors.toSet());
 
+            Collection<TestCase> results = new ArrayList<TestCase>();
 
-            if (result.isSuccessful()) {
-                System.out.println("[SUCCESS] extracted tests from: " + testSuiteFile.getPublicURIString());
-                for (ITestCase test : result.getTests()) {
-                    StringBuilder sb = new StringBuilder();
-                    for (FragmentPiece piece : test.getFragment().getText()) {
-                        sb.append(piece.text);
+            for (File testSuite : testSuites) {
+                FileObject testSuiteFile = spoofax.resourceService.resolve(path);
+                String text = spoofax.sourceTextService.text(testSuiteFile);
+                ISpoofaxInputUnit testSuiteUnit = spoofax.unitService.inputUnit(testSuiteFile, text, spt, spt);
+
+                ISpoofaxTestCaseExtractionResult result = extractor.extract(testSuiteUnit, sptProject);
+
+                if (result.isSuccessful()) {
+                    System.out.println("[SUCCESS] extracted tests from: " + testSuiteFile.getPublicURIString());
+                    for (ITestCase test : result.getTests()) {
+                        StringBuilder sb = new StringBuilder();
+                        for (FragmentPiece piece : test.getFragment().getText()) {
+                            sb.append(piece.text);
+                        }
+                        String fragmentText = sb.toString();
+                        ISpoofaxInputUnit input = spoofax.unitService.inputUnit(fragmentText, languageUnderTest, languageUnderTest);
+                        ISpoofaxParseUnit parseUnit = spoofax.syntaxService.parse(input);
+                        String fragmentAst = parseUnit.ast().toString();
+                        results.add(new TestCase(testSuiteFile.getPublicURIString(), test.getDescription(), fragmentText, fragmentAst));
                     }
-                    System.out.println("printing fragment for test case \"" + test.getDescription() + "\"");
-                    System.out.println(sb.toString());
-                }
-            } else {
-                System.out.println("[FAILURE] failed to extract tests from: " + testSuiteFile.getPublicURIString());
-                for (IMessage message : result.getAllMessages()) {
-                    System.out.println(message.toString());
+                } else {
+                    System.out.println("[FAILURE] failed to extract tests from: " + testSuiteFile.getPublicURIString());
+                    for (IMessage message : result.getAllMessages()) {
+                        System.out.println(message.toString());
+                    }
                 }
             }
+            
+            ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+            objectMapper.writeValue(new File("output.yml"), results);
             // ISpoofaxParseUnit parseUnit = spoofax.syntaxService.parse(input);
             // IContext context = spoofax.contextService.get(fileToParse, project, language);
 
@@ -103,5 +123,22 @@ public class AnalysisRun {
 
             // System.out.println(analyzeUnit.ast().toString());
         }
+    
+    }
+    
+    
+}
+
+class TestCase {
+    public String path;
+    public String description;
+    public String text;
+    public String ast;
+
+    public TestCase(String path, String description, String text, String ast) {
+        this.path = path;
+        this.description = description;
+        this.text = text;
+        this.ast = ast;
     }
 }
