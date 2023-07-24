@@ -1,6 +1,8 @@
 package mb.nabl2.benchmark;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.commons.vfs2.FileObject;
+import org.metaborg.core.analysis.AnalysisException;
 import org.metaborg.core.analysis.AnalyzerFacet;
 import org.metaborg.core.context.IContext;
 import org.metaborg.core.language.FacetContribution;
@@ -23,12 +26,14 @@ import org.metaborg.spoofax.core.analysis.AnalysisFacet;
 import org.metaborg.spoofax.core.analysis.ISpoofaxAnalyzeResult;
 import org.metaborg.spoofax.core.analysis.constraint.SingleFileConstraintAnalyzer;
 import org.metaborg.spoofax.core.shell.CLIUtils;
+import org.metaborg.spoofax.core.stratego.IStrategoCommon;
 import org.metaborg.spoofax.core.tracing.ISpoofaxTracingService;
 import org.metaborg.spoofax.core.unit.ISpoofaxAnalyzeUnit;
 import org.metaborg.spoofax.core.unit.ISpoofaxAnalyzeUnitUpdate;
 import org.metaborg.spoofax.core.unit.ISpoofaxInputUnit;
 import org.metaborg.spoofax.core.unit.ISpoofaxParseUnit;
 import org.metaborg.util.concurrent.IClosableLock;
+import org.spoofax.interpreter.terms.IStrategoTerm;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
@@ -60,6 +65,7 @@ public class AnalysisRun {
             ILanguageImpl languageUnderTest = spoofax.languageDiscoveryService.languageFromDirectory(languageUnderTestDir);
 
             IProject sptProject = cli.getOrCreateProject(sptDir);
+            IProject lutProject = cli.getOrCreateProject(languageUnderTestDir);
 
             final Injector injector = spoofax.injector;
             final ISpoofaxTestCaseExtractor extractor = injector.getInstance(SpoofaxTestCaseExtractor.class);
@@ -77,7 +83,7 @@ public class AnalysisRun {
             Collection<TestCase> results = new ArrayList<TestCase>();
 
             for (File testSuite : testSuites) {
-                FileObject testSuiteFile = spoofax.resourceService.resolve(path);
+                FileObject testSuiteFile = spoofax.resourceService.resolve(testSuite.getAbsolutePath());
                 String text = spoofax.sourceTextService.text(testSuiteFile);
                 ISpoofaxInputUnit testSuiteUnit = spoofax.unitService.inputUnit(testSuiteFile, text, spt, spt);
 
@@ -93,7 +99,24 @@ public class AnalysisRun {
                         String fragmentText = sb.toString();
                         ISpoofaxInputUnit input = spoofax.unitService.inputUnit(fragmentText, languageUnderTest, languageUnderTest);
                         ISpoofaxParseUnit parseUnit = spoofax.syntaxService.parse(input);
-                        String fragmentAst = parseUnit.ast().toString();
+
+                        File tmpFile = File.createTempFile("fragment", ".tmp");
+                        FileWriter writer = new FileWriter(tmpFile);
+                        writer.write(fragmentText);
+                        writer.close();
+
+                        FileObject fragmentFile = spoofax.resourceService.resolve(tmpFile.getAbsolutePath());
+
+                        IContext context = spoofax.contextService.get(fragmentFile, lutProject, languageUnderTest);
+
+                        IStrategoCommon strategoCommon = injector.getInstance(IStrategoCommon.class);
+                        IStrategoTerm transformed;
+                        try(IClosableLock lock = context.read()) {
+                            transformed = strategoCommon.invoke(parseUnit.input().langImpl(),
+                                context, parseUnit.ast(), "desugar-before-analysis");
+                        }                        
+
+                        String fragmentAst = transformed.toString();
                         results.add(new TestCase(testSuiteFile.getPublicURIString(), test.getDescription(), fragmentText, fragmentAst));
                     }
                 } else {
@@ -106,27 +129,8 @@ public class AnalysisRun {
             
             ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
             objectMapper.writeValue(new File("output.yml"), results);
-            // ISpoofaxParseUnit parseUnit = spoofax.syntaxService.parse(input);
-            // IContext context = spoofax.contextService.get(fileToParse, project, language);
-
-            // AnalyzerFacet<ISpoofaxParseUnit, ISpoofaxAnalyzeUnit, ISpoofaxAnalyzeUnitUpdate> facet = language.facet(AnalyzerFacet.class);
-            // SingleFileConstraintAnalyzer analyzer = (SingleFileConstraintAnalyzer) facet.analyzer;
-            // FacetContribution<AnalysisFacet> facetContribution = language.facetContribution(AnalysisFacet.class);
-
-            // System.out.println(facetContribution.facet.strategyName);
-
-            // ISpoofaxAnalyzeResult result;
-            // try(IClosableLock lock = context.write()) {
-            //     result = spoofax.analysisService.analyze(parseUnit, context);
-            // }
-            // ISpoofaxAnalyzeUnit analyzeUnit = result.result();
-
-            // System.out.println(analyzeUnit.ast().toString());
         }
-    
     }
-    
-    
 }
 
 class TestCase {
