@@ -115,23 +115,6 @@
                             </commandlineArgs>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>benchmark</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>java</executable>
-                            <commandlineArgs>
-                                -classpath %classpath
-                                org.openjdk.jmh.Main
-                                -jvmArgs -Xmx6G
-                                -rff output.csv
-                                mb.nabl2.benchmark.AnalysisBenchmark
-                                ${benchmark.args}
-                            </commandlineArgs>
-                        </configuration>
-                    </execution>
                 </executions>
 <!--                <executions>-->
 <!--                    <execution>-->

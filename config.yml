@@ -1,0 +1,4 @@
+---
+sptLanguagePath: ../spt/org.metaborg.meta.lang.spt
+languageUnderTestPath: ../thesis/develop
+testSuitesPath: ../thesis/develop.test/static-semantics/names

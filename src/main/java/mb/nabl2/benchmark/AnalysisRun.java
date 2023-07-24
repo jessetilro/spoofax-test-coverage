@@ -1,35 +1,27 @@
 package mb.nabl2.benchmark;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.apache.commons.vfs2.FileObject;
-import org.metaborg.core.analysis.AnalysisException;
-import org.metaborg.core.analysis.AnalyzerFacet;
 import org.metaborg.core.context.IContext;
-import org.metaborg.core.language.FacetContribution;
 import org.metaborg.core.language.ILanguageImpl;
 import org.metaborg.core.messages.IMessage;
 import org.metaborg.core.project.IProject;
 import org.metaborg.mbt.core.model.ITestCase;
-import org.metaborg.mbt.core.model.IFragment;
 import org.metaborg.mbt.core.model.IFragment.FragmentPiece;
 import org.metaborg.spoofax.core.Spoofax;
-import org.metaborg.spoofax.core.analysis.AnalysisFacet;
-import org.metaborg.spoofax.core.analysis.ISpoofaxAnalyzeResult;
-import org.metaborg.spoofax.core.analysis.constraint.SingleFileConstraintAnalyzer;
 import org.metaborg.spoofax.core.shell.CLIUtils;
 import org.metaborg.spoofax.core.stratego.IStrategoCommon;
-import org.metaborg.spoofax.core.tracing.ISpoofaxTracingService;
-import org.metaborg.spoofax.core.unit.ISpoofaxAnalyzeUnit;
-import org.metaborg.spoofax.core.unit.ISpoofaxAnalyzeUnitUpdate;
 import org.metaborg.spoofax.core.unit.ISpoofaxInputUnit;
 import org.metaborg.spoofax.core.unit.ISpoofaxParseUnit;
 import org.metaborg.util.concurrent.IClosableLock;
@@ -41,19 +33,20 @@ import com.google.inject.Injector;
 
 import org.metaborg.spt.core.extract.ISpoofaxTestCaseExtractor;
 import org.metaborg.spt.core.extract.SpoofaxTestCaseExtractor;
-import org.metaborg.spt.core.extract.SpoofaxTracingFragmentBuilder;
 import org.metaborg.spt.core.SPTModule;
-import org.metaborg.spt.core.extract.ISpoofaxFragmentBuilder;
-import org.metaborg.spt.core.extract.ISpoofaxTestCaseBuilder;
 import org.metaborg.spt.core.extract.ISpoofaxTestCaseExtractionResult;
-import org.metaborg.spt.core.extract.SpoofaxTestCaseBuilder;
-import org.metaborg.spt.core.extract.ISpoofaxTestExpectationProvider;
 
 public class AnalysisRun {
     public static void main(String[] args) throws Throwable {
         String sptPath = args[0];
         String languageUnderTestPath = args[1];
         String testSuitePath = args[2];
+
+        Collection<File> testSuites = FileUtils.listFiles(
+            Paths.get(testSuitePath).toFile(), 
+            new RegexFileFilter("^(.*?)\\.spt$"), 
+            DirectoryFileFilter.DIRECTORY
+        );
 
         try(Spoofax spoofax = new Spoofax(new SPTModule())) {
             CLIUtils cli = new CLIUtils(spoofax);
@@ -69,18 +62,9 @@ public class AnalysisRun {
 
             final Injector injector = spoofax.injector;
             final ISpoofaxTestCaseExtractor extractor = injector.getInstance(SpoofaxTestCaseExtractor.class);
-            // ISpoofaxFragmentBuilder fragmentBuilder = new SpoofaxTracingFragmentBuilder(spoofax.tracingService);
-            // Set<ISpoofaxTestExpectationProvider> expectationProviders = new HashSet<ISpoofaxTestExpectationProvider>();
-            // ISpoofaxTestCaseBuilder testCaseBuilder = new SpoofaxTestCaseBuilder(expectationProviders, fragmentBuilder, spoofax.tracingService);
-
-            // ISpoofaxTestCaseExtractor extractor = new SpoofaxTestCaseExtractor(
-            //     spoofax.syntaxService, spoofax.analysisService, spoofax.contextService, testCaseBuilder);
-
-            Set<File> testSuites = Stream.of(new File(testSuitePath).listFiles())
-                .filter(file -> !file.isDirectory())
-                .collect(Collectors.toSet());
 
             Collection<TestCase> results = new ArrayList<TestCase>();
+            Map<String, List<String>> index = new HashMap<String, List<String>>();
 
             for (File testSuite : testSuites) {
                 FileObject testSuiteFile = spoofax.resourceService.resolve(testSuite.getAbsolutePath());
@@ -89,9 +73,11 @@ public class AnalysisRun {
 
                 ISpoofaxTestCaseExtractionResult result = extractor.extract(testSuiteUnit, sptProject);
 
+                List<String> descriptions = new ArrayList<String>();
                 if (result.isSuccessful()) {
                     System.out.println("[SUCCESS] extracted tests from: " + testSuiteFile.getPublicURIString());
                     for (ITestCase test : result.getTests()) {
+                        descriptions.add(test.getDescription());
                         StringBuilder sb = new StringBuilder();
                         for (FragmentPiece piece : test.getFragment().getText()) {
                             sb.append(piece.text);
@@ -119,6 +105,7 @@ public class AnalysisRun {
                         String fragmentAst = transformed.toString();
                         results.add(new TestCase(testSuiteFile.getPublicURIString(), test.getDescription(), fragmentText, fragmentAst));
                     }
+                    index.put(testSuite.getAbsolutePath(), descriptions);
                 } else {
                     System.out.println("[FAILURE] failed to extract tests from: " + testSuiteFile.getPublicURIString());
                     for (IMessage message : result.getAllMessages()) {
@@ -128,7 +115,8 @@ public class AnalysisRun {
             }
             
             ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
-            objectMapper.writeValue(new File("output.yml"), results);
+            objectMapper.writeValue(new File("output/extract_tests_output.yml"), results);
+            objectMapper.writeValue(new File("output/extract_tests_index.yml"), index);
         }
     }
 }

@@ -1,18 +1,22 @@
 #!/usr/bin/env ruby
 
 require 'bundler/inline'
+require 'yaml'
+
+CONFIG_PATH = 'config.yml'.freeze
 
 gemfile do
   source 'https://rubygems.org'
   gem 'tty-prompt'
 end
 
+config = YAML.safe_load(File.read(CONFIG_PATH)) if File.file?(CONFIG_PATH)
+config ||= {}
 prompt = TTY::Prompt.new
 
-path = prompt.ask('Which language project?')
-
+path = config['languageUnderTestPath'] || prompt.ask('Which language project?')
 unless File.directory?(path)
-  puts 'Could not locate language project'
+  puts "Could not locate language project at \"#{path}\""
   exit(1)
 end
 

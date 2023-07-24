@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+require 'yaml'
+
+CONFIG_PATH = 'config.yml'.freeze
+OUTPUT_PATH = 'output/extract_tests_output.yml'.freeze
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'tty-prompt'
+end
+
+config = YAML.safe_load(File.read(CONFIG_PATH)) if File.file?(CONFIG_PATH)
+config ||= {}
+prompt = TTY::Prompt.new
+
+spt = config['sptLanguagePath'] ||
+  prompt.ask('In which directory is the SPT language located?')
+lut = config['languageUnderTestPath'] ||
+  prompt.ask('In which directory is your language under test located?')
+tests = config['testSuitesPath'] ||
+  prompt.ask('In which directory are your test suites located?')
+
+system "mvn clean verify exec:java@run -Dargs=\"#{spt} #{lut} #{tests}\""
+
+if File.file?(OUTPUT_PATH)
+  output = YAML.safe_load(File.read(OUTPUT_PATH))
+  puts "Extracted a total of #{output.size} test cases"
+else
+  puts 'Could not find output file'
+end
