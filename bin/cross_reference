@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+require 'yaml'
+
+CONFIG_PATH = 'config.yml'.freeze
+TESTS_OUTPUT_PATH = 'output/extract_tests_output.yml'.freeze
+CONSTRAINTS_OUTPUT_PATH = 'output/extract_constraints_output.yml'.freeze
+OUTPUT_PATH = 'output/cross_reference_output.yml'.freeze
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'tty-prompt'
+end
+
+prompt = TTY::Prompt.new
+
+unless File.file?(TESTS_OUTPUT_PATH)
+  puts "Error: could not find \"#{TESTS_OUTPUT_PATH}\", please extract tests first"
+  exit(1)
+end
+unless File.file?(CONSTRAINTS_OUTPUT_PATH)
+  puts "Error: could not find \"#{CONSTRAINTS_OUTPUT_PATH}\", please extract constraints first"
+  exit(1)
+end
+
+tests = YAML.safe_load(File.read(TESTS_OUTPUT_PATH))
+constraints = YAML.safe_load(File.read(CONSTRAINTS_OUTPUT_PATH))
+
+rules_for = lambda do |constructor|
+  ids = constraints['constructors'][constructor] || []
+  ids.map { |id| constraints['rules'][id] }
+end
+
+coverage = constraints['rules'].transform_values { |x| { 'rule' => x, 'tests' => [] } }
+cover = lambda do |test, rule_id|
+  coverage[rule_id]['tests'] << test['description']
+end
+
+tests.each do |test|
+  test_constructors = test['ast'].scan(/(?<![a-zA-Z0-9"])([A-Z][a-zA-Z0-9]+)(?!=[a-zA-Z"])/)
+      .flatten.uniq
+  applicable_rule_options = test_constructors.filter_map do |constructor|
+    rules = rules_for[constructor]
+    next if rules.empty?
+
+    [constructor, rules]
+  end.to_h
+
+  constructor_constraint_rule_options = applicable_rule_options.transform_values do |rules|
+    rules.group_by { |rule| rule['constraint'] }
+  end
+
+  constructor_constraint_rule_options.each do |_constructor, constraint_rule_options|
+    constraint_rule_options.each do |constraint, rule_options|
+      if rule_options.size == 1
+        cover[test, rule_options.first['id']]
+      else
+        cover[test, rule_options.first['id']]
+        next # TODO: further ease manual labor
+        puts test['ast']
+        selection = prompt.multi_select(
+            "Which rule(s) for the #{constraint} constraint apply to the above AST?",
+            per_page: 20, cycle: true, echo: false
+          ) do |menu|
+          rule_options.each do |rule|
+            menu.choice name: rule['head'], value: rule['id']
+          end
+        end
+        selection.each do |rule_id|
+          cover[test, rule_id]
+        end
+      end
+    end
+  end
+end
+
+File.write(OUTPUT_PATH, YAML.dump(coverage))

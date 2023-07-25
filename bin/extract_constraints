@@ -21,7 +21,10 @@ unless File.directory?(path)
   exit(1)
 end
 
-results = {}
+results = {
+  'rules' => {},
+  'constructors' => {}
+}
 
 Dir.chdir(path) do
   paths = Dir.glob('**/*.stx').reject { |x| x.include?('src-gen/') }
@@ -45,20 +48,25 @@ Dir.chdir(path) do
         .map { Regexp.last_match }
     matches.each do |x|
       head = x[1]
+      constraint = /^([a-zA-Z]+)\(/.match(head)[1]
       params = /^[a-zA-Z]+\((.*)\)$/.match(head)[1]
       constructors = params.scan(/(?<![a-zA-Z0-9])([a-zA-Z0-9]+)(?=\()/).flatten
       constructors.select! { |y| /[a-z]/.match?(y) }
       next if constructors.empty?
 
-      result = {
-        rule_id: id[],
-        rule_head: head,
-        constructors: constructors,
-        spec_path: path
+      rule_id = id[]
+
+      results['rules'][rule_id] = {
+        'id' => rule_id,
+        'constraint' => constraint,
+        'head' => head,
+        'constructors' => constructors,
+        'path' => path
       }
+
       constructors.each do |constructor|
-        results[constructor] ||= []
-        results[constructor] << result
+        results['constructors'][constructor] ||= []
+        results['constructors'][constructor] << rule_id
       end
     end
   end
