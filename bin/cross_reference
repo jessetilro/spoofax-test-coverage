@@ -52,14 +52,13 @@ tests.each do |test|
     rules.group_by { |rule| rule['constraint'] }
   end
 
-  constructor_constraint_rule_options.each do |_constructor, constraint_rule_options|
+  constructor_constraint_rule_options.each do |constructor, constraint_rule_options|
     constraint_rule_options.each do |constraint, rule_options|
       if rule_options.size == 1
         cover[test, rule_options.first['id']]
       else
         cover[test, rule_options.first['id']]
-        next # TODO: further ease manual labor
-        puts test['ast']
+        puts ATerm::DSL.declare { test['ast'] }.to_s(highlight: constructor)
         selection = prompt.multi_select(
             "Which rule(s) for the #{constraint} constraint apply to the above AST?",
             per_page: 20, cycle: true, echo: false

@@ -8,8 +8,8 @@ module ATerm
     end
 
     def to_s(level: 0, min: false, highlight: [])
-      highlight = Array(highlight)
-      if highlight.include?(constructor)
+      highlight = Array(highlight).filter_map(&:to_s)
+      if highlight.include?(constructor.to_s)
         open_bracket = "#{C_HIGHLIGHT}#{constructor}#{C_NONE}("
       else
         open_bracket = "#{constructor}("
@@ -28,7 +28,7 @@ module ATerm
         "#{open_bracket}#{list.map do |x|
           primitive?(x) ? x.inspect : x.to_s(
               level: level + 1, min: false, highlight: highlight
-            )
+            ).delete_suffix(',')
         end.join(', ')}#{close_bracket}#{',' if level != 0}"
       else
         string = <<~STRING
@@ -58,7 +58,7 @@ module ATerm
         "#{open_bracket}#{list.map do |x|
           primitive?(x) ? x.inspect : x.to_s(
               level: level + 1, min: false, highlight: highlight
-            )
+            ).delete_suffix(',')
         end.join(',')}#{close_bracket}#{',' if level != 0}"
       else
         string = open_bracket
