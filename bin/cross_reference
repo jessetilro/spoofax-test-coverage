@@ -2,6 +2,7 @@
 
 require 'bundler/inline'
 require 'yaml'
+require_relative '../lib/aterm/dsl'
 
 CONFIG_PATH = 'config.yml'.freeze
 TESTS_OUTPUT_PATH = 'output/extract_tests_output.yml'.freeze
