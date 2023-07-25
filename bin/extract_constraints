@@ -37,7 +37,7 @@ Dir.chdir(path) do
 
   selected_paths.each do |path|
     spec = File.read(path)
-    matches = spec.to_enum(:scan, /([a-zA-Z]+\([^\n]*\))[^.:=]*(?:=|:-)(?!=)[^.]*\./m)
+    matches = spec.to_enum(:scan, /[a-zA-Z.]\s+([a-zA-Z]+\([^\n]*\))\s*[.=:]/m)
         .map { Regexp.last_match }
     functional_rule_heads[path] = matches.map { |x| x[1] }
   end
