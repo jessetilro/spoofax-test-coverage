@@ -16,7 +16,7 @@ module ATerm
 
     def leaf?(term)
       (!term.is_a?(Array) || term.empty?) &&
-      (!term.respond_to?(:children?) || term.children.empty?)
+        (!term.respond_to?(:children?) || term.children.empty?)
     end
 
     def primitive?(term)

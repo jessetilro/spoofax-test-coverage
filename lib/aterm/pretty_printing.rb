@@ -2,7 +2,7 @@ module ATerm
   module PrettyPrinting
     C_HIGHLIGHT = "\033[0;32m".freeze
     C_NONE = "\033[0m".freeze
-    
+
     def inspect
       "#<ATerm::#{constructor}>"
     end
@@ -15,9 +15,9 @@ module ATerm
         open_bracket = "#{constructor}("
       end
       if min
-        wrap_s_min(arguments, open_bracket, ')', level: level, highlight: highlight)
+        wrap_s_min(arguments, open_bracket, ')', level:, highlight:)
       else
-        wrap_s(arguments, open_bracket, ')', level: level, highlight: highlight)
+        wrap_s(arguments, open_bracket, ')', level:, highlight:)
       end
     end
 
@@ -26,19 +26,25 @@ module ATerm
     def wrap_s(list, open_bracket, close_bracket, level: 0, highlight: [])
       if list.all? { |node| leaf?(node) }
         "#{open_bracket}#{list.map do |x|
-          primitive?(x) ? x.inspect : x.to_s(
-              level: level + 1, min: false, highlight: highlight
-            ).delete_suffix(',')
+          if primitive?(x)
+            x.inspect
+          else
+            x.to_s(
+                level: level + 1, min: false, highlight:
+              ).delete_suffix(',')
+          end
         end.join(', ')}#{close_bracket}#{',' if level != 0}"
       else
         string = <<~STRING
           #{open_bracket}
           #{children = list.each_with_index.map do |child, index|
               if child.is_a?(Array)
-                child_s = wrap_s(child, '[', ']', level: level + 1)
+                child_s = wrap_s(child, '[', ']', level: level + 1, highlight:)
+              elsif primitive?(child)
+                child_s = "#{child.inspect},"
               else
-                primitive?(child) ? child_s = "#{child.inspect}," : child_s = child.to_s(
-                    level: level + 1, min: false, highlight: highlight
+                child_s = child.to_s(
+                    level: level + 1, min: false, highlight:
                   )
               end
               child_s = child_s.strip.sub(/,\s*\z/, '') if index >= list.size - 1
@@ -56,20 +62,24 @@ module ATerm
     def wrap_s_min(list, open_bracket, close_bracket, level: 0, highlight: [])
       if list.all? { |node| leaf?(node) }
         "#{open_bracket}#{list.map do |x|
-          primitive?(x) ? x.inspect : x.to_s(
-              level: level + 1, min: false, highlight: highlight
-            ).delete_suffix(',')
+          if primitive?(x)
+            x.inspect
+          else
+            x.to_s(
+                level: level + 1, min: false, highlight:
+              ).delete_suffix(',')
+          end
         end.join(',')}#{close_bracket}#{',' if level != 0}"
       else
         string = open_bracket
         list.each_with_index do |child, index|
           if child.is_a?(Array)
-            child_s = wrap_s_min(child, '[', ']', level: level + 1)
+            child_s = wrap_s_min(child, '[', ']', level: level + 1, highlight:)
           elsif primitive?(child)
             child_s = "#{child.inspect},"
           else
             child_s = child.to_s(
-                level: level + 1, min: true, highlight: highlight
+                level: level + 1, min: true, highlight:
               )
           end
           child_s = child_s.strip.sub(/,\s*\z/, '') if index >= list.size - 1
