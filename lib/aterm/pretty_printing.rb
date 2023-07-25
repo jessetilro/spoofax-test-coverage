@@ -15,9 +15,9 @@ module ATerm
         open_bracket = "#{constructor}("
       end
       if min
-        wrap_s_min(arguments, open_bracket, ')', level:, highlight:)
+        wrap_s_min(arguments, open_bracket, ')', level: level, highlight: highlight)
       else
-        wrap_s(arguments, open_bracket, ')', level:, highlight:)
+        wrap_s(arguments, open_bracket, ')', level: level, highlight: highlight)
       end
     end
 
@@ -30,7 +30,7 @@ module ATerm
             x.inspect
           else
             x.to_s(
-                level: level + 1, min: false, highlight:
+                level: level + 1, min: false, highlight: highlight
               ).delete_suffix(',')
           end
         end.join(', ')}#{close_bracket}#{',' if level != 0}"
@@ -39,12 +39,12 @@ module ATerm
           #{open_bracket}
           #{children = list.each_with_index.map do |child, index|
               if child.is_a?(Array)
-                child_s = wrap_s(child, '[', ']', level: level + 1, highlight:)
+                child_s = wrap_s(child, '[', ']', level: level + 1, highlight: highlight)
               elsif primitive?(child)
                 child_s = "#{child.inspect},"
               else
                 child_s = child.to_s(
-                    level: level + 1, min: false, highlight:
+                    level: level + 1, min: false, highlight: highlight
                   )
               end
               child_s = child_s.strip.sub(/,\s*\z/, '') if index >= list.size - 1
@@ -66,7 +66,7 @@ module ATerm
             x.inspect
           else
             x.to_s(
-                level: level + 1, min: false, highlight:
+                level: level + 1, min: false, highlight: highlight
               ).delete_suffix(',')
           end
         end.join(',')}#{close_bracket}#{',' if level != 0}"
@@ -74,12 +74,12 @@ module ATerm
         string = open_bracket
         list.each_with_index do |child, index|
           if child.is_a?(Array)
-            child_s = wrap_s_min(child, '[', ']', level: level + 1, highlight:)
+            child_s = wrap_s_min(child, '[', ']', level: level + 1, highlight: highlight)
           elsif primitive?(child)
             child_s = "#{child.inspect},"
           else
             child_s = child.to_s(
-                level: level + 1, min: true, highlight:
+                level: level + 1, min: true, highlight: highlight
               )
           end
           child_s = child_s.strip.sub(/,\s*\z/, '') if index >= list.size - 1
