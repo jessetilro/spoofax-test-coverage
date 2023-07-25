@@ -99,7 +99,7 @@ public class AnalysisRun {
                         IStrategoTerm transformed;
                         try(IClosableLock lock = context.read()) {
                             transformed = strategoCommon.invoke(parseUnit.input().langImpl(),
-                                context, parseUnit.ast(), "desugar-before-analysis");
+                                context, parseUnit.ast(), "pre-analyze");
                         }                        
 
                         String fragmentAst = transformed.toString();
