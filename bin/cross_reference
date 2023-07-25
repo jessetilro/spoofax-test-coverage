@@ -33,12 +33,30 @@ rules_for = lambda do |constructor|
   ids.map { |id| constraints['rules'][id] }
 end
 
-coverage = constraints['rules'].transform_values { |x| { 'rule' => x, 'tests' => [] } }
+if File.file?(OUTPUT_PATH)
+  puts "picking up output building where we left off: \"#{OUTPUT_PATH}\""
+  coverage = YAML.safe_load(File.read(OUTPUT_PATH))
+else
+  puts 'initializing output data structure from scratch'
+  coverage = {
+    'coverage' => constraints['rules']
+        .transform_values { |x| { 'rule' => x, 'tests' => [] } },
+    'progress' => {}
+  }
+end
 cover = lambda do |test, rule_id|
-  coverage[rule_id]['tests'] << test['description']
+  coverage['coverage'][rule_id]['tests'] << test['description']
+end
+flush = lambda do
+  puts "saving progress to \"#{OUTPUT_PATH}\""
+  File.write(OUTPUT_PATH, YAML.dump(coverage))
 end
 
+choices_remaining = 0
+choices_remaining_length = choices_remaining.to_s.size
 tests.each do |test|
+  coverage['progress'][test['description']] ||= {}
+
   test_constructors = test['ast'].scan(/(?<![a-zA-Z0-9"])([A-Z][a-zA-Z0-9]+)(?!=[a-zA-Z"])/)
       .flatten.uniq
   applicable_rule_options = test_constructors.filter_map do |constructor|
@@ -54,13 +72,45 @@ tests.each do |test|
 
   constructor_constraint_rule_options.each do |constructor, constraint_rule_options|
     constraint_rule_options.each do |constraint, rule_options|
+      next if coverage['progress'][test['description']][[constructor, constraint]]
+
+      choices_remaining += 1 if rule_options.size > 1
+    end
+  end
+end
+
+choice = 1
+tests.each do |test|
+  coverage['progress'][test['description']] ||= {}
+
+  test_constructors = test['ast'].scan(/(?<![a-zA-Z0-9"])([A-Z][a-zA-Z0-9]+)(?!=[a-zA-Z"])/)
+      .flatten.uniq
+  applicable_rule_options = test_constructors.filter_map do |constructor|
+    rules = rules_for[constructor]
+    next if rules.empty?
+
+    [constructor, rules]
+  end.to_h
+
+  constructor_constraint_rule_options = applicable_rule_options.transform_values do |rules|
+    rules.group_by { |rule| rule['constraint'] }
+  end
+
+  constructor_constraint_rule_options.each do |constructor, constraint_rule_options|
+    constraint_rule_options.each do |constraint, rule_options|
+      next if coverage['progress'][test['description']][[constructor, constraint]]
+
       if rule_options.size == 1
         cover[test, rule_options.first['id']]
       else
-        cover[test, rule_options.first['id']]
+        puts test['ast']
         puts ATerm::DSL.declare { test['ast'] }.to_s(highlight: constructor)
         selection = prompt.multi_select(
-            "Which rule(s) for the #{constraint} constraint apply to the above AST?",
+            "Choice: #{choice.to_s.rjust(choices_remaining_length, '0')} / #{choices_remaining}\n" \
+            "Constructor: #{constructor}\n" \
+            "Constraint: #{constraint}\n" \
+            "Test: #{test['description']}\n" \
+            'Which rule(s) apply to the above AST?',
             per_page: 20, cycle: true, echo: false
           ) do |menu|
           rule_options.each do |rule|
@@ -70,9 +120,25 @@ tests.each do |test|
         selection.each do |rule_id|
           cover[test, rule_id]
         end
+        choice += 1
       end
+
+      coverage['progress'][test['description']][[constructor, constraint]] = true
+      flush[]
     end
   end
 end
 
-File.write(OUTPUT_PATH, YAML.dump(coverage))
+series = coverage['coverage'].values.map { |x| x['tests'].size }
+uncovered_count = series.count(&:zero?)
+
+puts 'CONSTRAINT COVERAGE'
+puts (1.0 - (uncovered_count.to_f / series.count)) * 100.0
+puts
+puts "TEST COUNT SERIES (#{series.size})"
+puts series.inspect
+puts
+puts "UNCOVERED CONSTRAINTS (#{uncovered_count})"
+coverage['coverage'].values.select { |x| x['tests'].empty? }.each do |rule|
+  puts [rule['rule']['head'], rule['rule']['path']].inspect
+end
