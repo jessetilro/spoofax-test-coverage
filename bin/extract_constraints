@@ -4,6 +4,7 @@ require 'bundler/inline'
 require 'yaml'
 
 CONFIG_PATH = 'config.yml'.freeze
+OUTPUT_PATH = 'output/extract_constraints_output.yml'.freeze
 
 gemfile do
   source 'https://rubygems.org'
@@ -20,6 +21,8 @@ unless File.directory?(path)
   exit(1)
 end
 
+results = {}
+
 Dir.chdir(path) do
   paths = Dir.glob('**/*.stx').reject { |x| x.include?('src-gen/') }
 
@@ -33,14 +36,31 @@ Dir.chdir(path) do
     menu.default(*1.upto(paths.size))
   end
 
-  functional_rule_heads = {}
+  i = 0
+  id = -> { i += 1 }
 
   selected_paths.each do |path|
     spec = File.read(path)
-    matches = spec.to_enum(:scan, /[a-zA-Z.]\s+([a-zA-Z]+\([^\n]*\))\s*[.=:]/m)
+    matches = spec.to_enum(:scan, /[a-zA-Z.]\s+([a-zA-Z]+\([^*\n.=:]*\))\s*[.=:]/m)
         .map { Regexp.last_match }
-    functional_rule_heads[path] = matches.map { |x| x[1] }
-  end
+    matches.each do |x|
+      head = x[1]
+      params = /^[a-zA-Z]+\((.*)\)$/.match(head)[1]
+      constructors = params.scan(/(?<![a-zA-Z0-9])([a-zA-Z0-9]+)(?=\()/).flatten
+      constructors.select! { |y| /[a-z]/.match?(y) }
+      next if constructors.empty?
 
-  pp functional_rule_heads
+      result = {
+        rule_id: id[],
+        rule_head: head,
+        constructors: constructors,
+        spec_path: path
+      }
+      constructors.each do |constructor|
+        results[constructor] ||= []
+        results[constructor] << result
+      end
+    end
+  end
 end
+File.write(OUTPUT_PATH, YAML.dump(results))
