@@ -130,15 +130,29 @@ tests.each do |test|
 end
 
 series = coverage['coverage'].values.map { |x| x['tests'].size }
-uncovered_count = series.count(&:zero?)
+uncovered_rules_count = series.count(&:zero?)
+uncovered_rules = coverage['coverage'].values.select { |x| x['tests'].empty? }
+uncovered_rules_per_constraint = uncovered_rules.group_by { |x| x['rule']['constraint'] }
+rule_counts_per_constraint = constraints['rules'].values
+    .group_by { |x| x['constraint'] }
+    .transform_values(&:count)
 
 puts 'CONSTRAINT COVERAGE'
-puts (1.0 - (uncovered_count.to_f / series.count)) * 100.0
+puts (1.0 - (uncovered_rules_count.to_f / series.count)) * 100.0
 puts
 puts "TEST COUNT SERIES (#{series.size})"
 puts series.inspect
 puts
-puts "UNCOVERED CONSTRAINTS (#{uncovered_count})"
-coverage['coverage'].values.select { |x| x['tests'].empty? }.each do |rule|
+puts "UNCOVERED RULES (#{uncovered_rules_count})"
+uncovered_rules.each do |rule|
   puts [rule['rule']['head'], rule['rule']['path']].inspect
+end
+puts
+puts "UNCOVERED RULE COUNT PER CONSTRAINT (#{uncovered_rules_per_constraint.size})"
+uncovered_rules_per_constraint.each do |constraint, rules|
+  total_count = rule_counts_per_constraint[constraint]
+  uncovered_count = rules.count
+  percentage_uncovered = uncovered_count.to_f / total_count
+
+  puts [constraint, uncovered_count, percentage_uncovered].inspect
 end
