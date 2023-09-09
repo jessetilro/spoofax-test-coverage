@@ -1,0 +1,7059 @@
+---
+coverage:
+  1:
+    rule:
+      id: 1
+      constraint: fileOk
+      head: fileOk(s, m@Module(id, opt, sections))
+      constructors:
+      - Module
+      path: statics/main.stx
+    tests:
+    - 'Duplicate entity type fails '
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  2:
+    rule:
+      id: 2
+      constraint: programOk
+      head: programOk(m@Module(id, opt, sections))
+      constructors:
+      - Module
+      path: statics/main.stx
+    tests:
+    - 'Duplicate entity type fails '
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  3:
+    rule:
+      id: 3
+      constraint: sectionOk
+      head: sectionOk(s, s_data, ConfigSection(_))
+      constructors:
+      - ConfigSection
+      path: statics/main.stx
+    tests:
+    - 'Duplicate entity type fails '
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  4:
+    rule:
+      id: 4
+      constraint: sectionOk
+      head: sectionOk(s, s_data, FunctionSection(functions))
+      constructors:
+      - FunctionSection
+      path: statics/main.stx
+    tests:
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+  5:
+    rule:
+      id: 5
+      constraint: sectionOk
+      head: sectionOk(s, s_data, DataSection(datas))
+      constructors:
+      - DataSection
+      path: statics/main.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  6:
+    rule:
+      id: 6
+      constraint: sectionOk
+      head: sectionOk(s, s_data, ExecuteSection(executes))
+      constructors:
+      - ExecuteSection
+      path: statics/main.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve Identifier to entity '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  7:
+    rule:
+      id: 7
+      constraint: executeOk
+      head: executeOk(s, Exp2Execute(exp))
+      constructors:
+      - Exp2Execute
+      path: statics/main.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve Identifier to entity '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  8:
+    rule:
+      id: 8
+      constraint: modelOk
+      head: modelOk(s, Entity(id, optional_extends, strat, members))
+      constructors:
+      - Entity
+      path: statics/main.stx
+    tests:
+    - 'Duplicate entity type fails '
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  9:
+    rule:
+      id: 9
+      constraint: modelOk
+      head: modelOk(s, RelationDerived(e1, r1, m1_optional, expr, m2_optional, e2,
+        r2, str))
+      constructors:
+      - RelationDerived
+      path: statics/main.stx
+    tests:
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'resolve filter type 2 '
+  10:
+    rule:
+      id: 10
+      constraint: memberOk
+      head: memberOk(_, s, DerivationAttribute(id, type, mult, exp, [Inline()]))
+      constructors:
+      - DerivationAttribute
+      - Inline
+      path: statics/main.stx
+    tests:
+    - 'Error on overriding inline '
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Error on inline cycle '
+  11:
+    rule:
+      id: 11
+      constraint: memberOk
+      head: memberOk(_, s, DerivationAttribute(id, type, mult, exp, strat))
+      constructors:
+      - DerivationAttribute
+      path: statics/main.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Resolve invalid Identifier fails (attribute) '
+  12:
+    rule:
+      id: 12
+      constraint: memberOk
+      head: memberOk(_, s, DefaultAttribute(id, type, mult, exp, strat))
+      constructors:
+      - DefaultAttribute
+      path: statics/main.stx
+    tests:
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+  13:
+    rule:
+      id: 13
+      constraint: memberOk
+      head: memberOk(_, s, Attribute(id, type, mult))
+      constructors:
+      - Attribute
+      path: statics/main.stx
+    tests:
+    - 'Duplicate attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'resolve attribute subtype '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  14:
+    rule:
+      id: 14
+      constraint: memberOk
+      head: memberOk(_, s, AbstractAttribute(id, type, mult, strat))
+      constructors:
+      - AbstractAttribute
+      path: statics/main.stx
+    tests:
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+  15:
+    rule:
+      id: 15
+      constraint: memberOk
+      head: memberOk(s_root, s, Role(entity, inverse, mult, role))
+      constructors:
+      - Role
+      path: statics/main.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  16:
+    rule:
+      id: 16
+      constraint: memberOk
+      head: memberOk(s_root, s, Shortcut(role1, shortcut1, role2, shortcut2))
+      constructors:
+      - Shortcut
+      path: statics/main.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  17:
+    rule:
+      id: 17
+      constraint: dataOk
+      head: dataOk(s, s_data, EntityInstance2Data(instance))
+      constructors:
+      - EntityInstance2Data
+      path: statics/data.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  18:
+    rule:
+      id: 18
+      constraint: entityInstanceOk
+      head: entityInstanceOk(s_member_value, s_data, EntityInstance(name, type, member_values))
+      constructors:
+      - EntityInstance
+      path: statics/data.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  19:
+    rule:
+      id: 19
+      constraint: entityInstanceOk
+      head: entityInstanceOk(s_member_value, s_data, EntityInstanceNoType(name, member_values))
+      constructors:
+      - EntityInstanceNoType
+      path: statics/data.stx
+    tests:
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+  20:
+    rule:
+      id: 20
+      constraint: relationInstanceOk
+      head: relationInstanceOk(s_member_value, s_data, RelationInstance(name, type,
+        member_values))
+      constructors:
+      - RelationInstance
+      path: statics/data.stx
+    tests: []
+  21:
+    rule:
+      id: 21
+      constraint: relationInstanceOk
+      head: relationInstanceOk(s_member_value, s_data, RelationInstanceNoType(name,
+        member_values))
+      constructors:
+      - RelationInstanceNoType
+      path: statics/data.stx
+    tests: []
+  22:
+    rule:
+      id: 22
+      constraint: memberValueOk
+      head: memberValueOk(s_entity_instance, s_data, MemberValue(member_name, values))
+      constructors:
+      - MemberValue
+      path: statics/data.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+  23:
+    rule:
+      id: 23
+      constraint: typeOfValue
+      head: typeOfValue(_, _, _, LitVal(litval))
+      constructors:
+      - LitVal
+      path: statics/data.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+  24:
+    rule:
+      id: 24
+      constraint: typeOfValue
+      head: typeOfValue(s_member_value, s_data, member_type, EntityInstanceValue2Value(eiv))
+      constructors:
+      - EntityInstanceValue2Value
+      path: statics/data.stx
+    tests:
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+  25:
+    rule:
+      id: 25
+      constraint: typeOfValue
+      head: typeOfValue(s_member_value, s_data, member_type, EntityInstanceWrapper(relation_instance,
+        entity_instance_value))
+      constructors:
+      - EntityInstanceWrapper
+      path: statics/data.stx
+    tests: []
+  26:
+    rule:
+      id: 26
+      constraint: typeOfEntityInstanceValue
+      head: typeOfEntityInstanceValue(s_member_value, s_data, member_type, EntityInstanceRef(eir))
+      constructors:
+      - EntityInstanceRef
+      path: statics/data.stx
+    tests: []
+  27:
+    rule:
+      id: 27
+      constraint: typeOfEntityInstanceValue
+      head: typeOfEntityInstanceValue(s_member_value, s_data, member_type, EntityInstance2EntityInstanceValue(ei))
+      constructors:
+      - EntityInstance2EntityInstanceValue
+      path: statics/data.stx
+    tests:
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+  33:
+    rule:
+      id: 33
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, this@This())
+      constructors:
+      - This
+      path: statics/expressions/references.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+  34:
+    rule:
+      id: 34
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Ref(r))
+      constructors:
+      - Ref
+      path: statics/expressions/references.stx
+    tests:
+    - 'Resolve attribute from Identifier '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Error on inline cycle '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Resolve Identifier to entity '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  35:
+    rule:
+      id: 35
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, MemberAccess(e, r))
+      constructors:
+      - MemberAccess
+      path: statics/expressions/references.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  36:
+    rule:
+      id: 36
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Cast(e1, t))
+      constructors:
+      - Cast
+      path: statics/expressions/casts.stx
+    tests: []
+  37:
+    rule:
+      id: 37
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, FilterType(e1, t))
+      constructors:
+      - FilterType
+      path: statics/expressions/casts.stx
+    tests:
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+  38:
+    rule:
+      id: 38
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Addition(e1, e2))
+      constructors:
+      - Addition
+      path: statics/expressions/math.stx
+    tests:
+    - 'Error on inline cycle '
+  39:
+    rule:
+      id: 39
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Subtraction(e1, e2))
+      constructors:
+      - Subtraction
+      path: statics/expressions/math.stx
+    tests: []
+  40:
+    rule:
+      id: 40
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Division(e1, e2))
+      constructors:
+      - Division
+      path: statics/expressions/math.stx
+    tests: []
+  41:
+    rule:
+      id: 41
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@FloorDivision(e1, e2))
+      constructors:
+      - FloorDivision
+      path: statics/expressions/math.stx
+    tests: []
+  42:
+    rule:
+      id: 42
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Modulo(e1, e2))
+      constructors:
+      - Modulo
+      path: statics/expressions/math.stx
+    tests: []
+  43:
+    rule:
+      id: 43
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Multiplication(e1, e2))
+      constructors:
+      - Multiplication
+      path: statics/expressions/math.stx
+    tests:
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+  44:
+    rule:
+      id: 44
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Not(e1))
+      constructors:
+      - Not
+      path: statics/expressions/logic.stx
+    tests: []
+  45:
+    rule:
+      id: 45
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Equal(e1, e2))
+      constructors:
+      - Equal
+      path: statics/expressions/logic.stx
+    tests:
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+  46:
+    rule:
+      id: 46
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Inequal(e1, e2))
+      constructors:
+      - Inequal
+      path: statics/expressions/logic.stx
+    tests: []
+  47:
+    rule:
+      id: 47
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@LessThan(e1, e2))
+      constructors:
+      - LessThan
+      path: statics/expressions/logic.stx
+    tests: []
+  48:
+    rule:
+      id: 48
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@LessThanEqual(e1, e2))
+      constructors:
+      - LessThanEqual
+      path: statics/expressions/logic.stx
+    tests: []
+  49:
+    rule:
+      id: 49
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@GreaterThan(e1, e2))
+      constructors:
+      - GreaterThan
+      path: statics/expressions/logic.stx
+    tests: []
+  50:
+    rule:
+      id: 50
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@GreaterThanEqual(e1, e2))
+      constructors:
+      - GreaterThanEqual
+      path: statics/expressions/logic.stx
+    tests: []
+  51:
+    rule:
+      id: 51
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@And(e1, e2))
+      constructors:
+      - And
+      path: statics/expressions/logic.stx
+    tests: []
+  52:
+    rule:
+      id: 52
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Or(e1, e2))
+      constructors:
+      - Or
+      path: statics/expressions/logic.stx
+    tests: []
+  53:
+    rule:
+      id: 53
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@If(e1, e2, e3))
+      constructors:
+      - If
+      path: statics/expressions/logic.stx
+    tests: []
+  54:
+    rule:
+      id: 54
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@ChoiceLeft(e1, e2))
+      constructors:
+      - ChoiceLeft
+      path: statics/expressions/multiplicity-operators.stx
+    tests:
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'resolve filter type 2 '
+  55:
+    rule:
+      id: 55
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Merge(e1, e2))
+      constructors:
+      - Merge
+      path: statics/expressions/multiplicity-operators.stx
+    tests:
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+  56:
+    rule:
+      id: 56
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, e@Difference(e1, e2))
+      constructors:
+      - Difference
+      path: statics/expressions/multiplicity-operators.stx
+    tests: []
+  57:
+    rule:
+      id: 57
+      constraint: richTypeOfExp
+      head: richTypeOfExp(_, Literal(litval))
+      constructors:
+      - Literal
+      path: statics/expressions/literals.stx
+    tests:
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'no error on overriding field '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+  58:
+    rule:
+      id: 58
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Filter(e1, x, e2))
+      constructors:
+      - Filter
+      path: statics/expressions/collections.stx
+    tests:
+    - 'Resolve filter variable '
+  59:
+    rule:
+      id: 59
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, OrderBy(e1, x, e2))
+      constructors:
+      - OrderBy
+      path: statics/expressions/collections.stx
+    tests: []
+  60:
+    rule:
+      id: 60
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Find(e1, x, e2))
+      constructors:
+      - Find
+      path: statics/expressions/collections.stx
+    tests:
+    - 'Resolve find variable '
+  61:
+    rule:
+      id: 61
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("min", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  62:
+    rule:
+      id: 62
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("max", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  63:
+    rule:
+      id: 63
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("avg", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests:
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+  64:
+    rule:
+      id: 64
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("sum", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  65:
+    rule:
+      id: 65
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("conj", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  66:
+    rule:
+      id: 66
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("disj", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  67:
+    rule:
+      id: 67
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("concat", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests:
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+  68:
+    rule:
+      id: 68
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("count", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+  69:
+    rule:
+      id: 69
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("first", [e1]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  70:
+    rule:
+      id: 70
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("first", [e1, e2]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests:
+    - 'No error on correct number of arguments for built-in function '
+  71:
+    rule:
+      id: 71
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("elemAt", [e1, e2]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  72:
+    rule:
+      id: 72
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function("indexOf", [e1, e2]))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests: []
+  73:
+    rule:
+      id: 73
+      constraint: richTypeOfExp
+      head: richTypeOfExp(s, Function(f, es))
+      constructors:
+      - Function
+      path: statics/expressions/functions.stx
+    tests:
+    - 'Error on wrong number of arguments for built-in function '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+  74:
+    rule:
+      id: 74
+      constraint: nameOfSpaceArrowID
+      head: nameOfSpaceArrowID(ID2SpaceArrowID(x))
+      constructors:
+      - ID2SpaceArrowID
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  75:
+    rule:
+      id: 75
+      constraint: nameOfDotID
+      head: nameOfDotID(ID2DotID(x))
+      constructors:
+      - ID2DotID
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  76:
+    rule:
+      id: 76
+      constraint: ameOfIDSpace
+      head: ameOfIDSpace(ID2IDSpace(x))
+      constructors:
+      - ID2IDSpace
+      path: statics/core.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  77:
+    rule:
+      id: 77
+      constraint: multOfMult
+      head: multOfMult(One())
+      constructors:
+      - One
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type 2 '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  78:
+    rule:
+      id: 78
+      constraint: multOfMult
+      head: multOfMult(ZeroOrOne())
+      constructors:
+      - ZeroOrOne
+      path: statics/core.stx
+    tests:
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong multiplicity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  79:
+    rule:
+      id: 79
+      constraint: multOfMult
+      head: multOfMult(OneOrMore())
+      constructors:
+      - OneOrMore
+      path: statics/core.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on attribute and shortcut with same name '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+  80:
+    rule:
+      id: 80
+      constraint: multOfMult
+      head: multOfMult(ZeroOrMore())
+      constructors:
+      - ZeroOrMore
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  81:
+    rule:
+      id: 81
+      constraint: multOfSpaceMultiplicity
+      head: multOfSpaceMultiplicity(MultiplicityOrdering2SpaceMultiplicity(x))
+      constructors:
+      - MultiplicityOrdering2SpaceMultiplicity
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  82:
+    rule:
+      id: 82
+      constraint: multOfMultOrd
+      head: multOfMultOrd(Multiplicity2MultiplicityOrdering(x))
+      constructors:
+      - Multiplicity2MultiplicityOrdering
+      path: statics/core.stx
+    tests:
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  83:
+    rule:
+      id: 83
+      constraint: multOfMultOrd
+      head: multOfMultOrd(OneOrMoreOrdered())
+      constructors:
+      - OneOrMoreOrdered
+      path: statics/core.stx
+    tests: []
+  84:
+    rule:
+      id: 84
+      constraint: multOfMultOrd
+      head: multOfMultOrd(ZeroOrMoreOrdered())
+      constructors:
+      - ZeroOrMoreOrdered
+      path: statics/core.stx
+    tests: []
+  85:
+    rule:
+      id: 85
+      constraint: zeroness
+      head: zeroness(Literal(Float(i)))
+      constructors:
+      - Literal
+      - Float
+      path: statics/core.stx
+    tests:
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'Error on call with wrong type '
+  86:
+    rule:
+      id: 86
+      constraint: zeroness
+      head: zeroness(Literal(Int("0")))
+      constructors:
+      - Literal
+      - Int
+      path: statics/core.stx
+    tests: []
+  87:
+    rule:
+      id: 87
+      constraint: zeroness
+      head: zeroness(Literal(Int(_)))
+      constructors:
+      - Literal
+      - Int
+      path: statics/core.stx
+    tests:
+    - 'Error on overriding inline '
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Error on inline cycle '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'no error on overriding field '
+    - 'no error on overriding field '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'Error on duplicate function name '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Error on call with wrong type '
+  88:
+    rule:
+      id: 88
+      constraint: stratOfStrat
+      head: stratOfStrat(Incremental())
+      constructors:
+      - Incremental
+      path: statics/core.stx
+    tests:
+    - 'Duplicate entity type fails '
+    - 'Duplicate relation fails '
+    - 'Resolve relation member to entity '
+    - 'Resolve invalid relation member fails '
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve role in shortcut '
+    - 'error on duplicate shortcut '
+    - 'error on duplicate shortcut by desugaring '
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Duplicate role fails '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on duplicate role '
+    - 'error on duplicate role by desugaring '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve find variable '
+    - 'Resolve filter variable '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'error on duplicate inverse '
+    - 'error on duplicate inverse by desugaring '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'error on role and inverse with same name '
+    - 'error on role and shortcut with same name '
+    - 'error on inverse and shortcut with same name '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (relation shortcut) '
+    - 'Resolve invalid Identifier fails (attribute) '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  89:
+    rule:
+      id: 89
+      constraint: stratOfStrat
+      head: stratOfStrat(OnDemand())
+      constructors:
+      - OnDemand
+      path: statics/core.stx
+    tests: []
+  90:
+    rule:
+      id: 90
+      constraint: stratOfStrat
+      head: stratOfStrat(OnDemandIncremental())
+      constructors:
+      - OnDemandIncremental
+      path: statics/core.stx
+    tests: []
+  91:
+    rule:
+      id: 91
+      constraint: stratOfStrat
+      head: stratOfStrat(Eventual())
+      constructors:
+      - Eventual
+      path: statics/core.stx
+    tests: []
+  92:
+    rule:
+      id: 92
+      constraint: stratOfStrat
+      head: stratOfStrat(OnDemandEventual())
+      constructors:
+      - OnDemandEventual
+      path: statics/core.stx
+    tests: []
+  93:
+    rule:
+      id: 93
+      constraint: typeOfAnyType
+      head: typeOfAnyType(_, TypePrimitive(t))
+      constructors:
+      - TypePrimitive
+      path: statics/core.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve invalid Identifier fails (attribute) '
+  94:
+    rule:
+      id: 94
+      constraint: typeOfAnyType
+      head: typeOfAnyType(s, TypeEntity(x))
+      constructors:
+      - TypeEntity
+      path: statics/core.stx
+    tests: []
+  95:
+    rule:
+      id: 95
+      constraint: typeOfPrimitiveType
+      head: typeOfPrimitiveType(Boolean())
+      constructors:
+      - Boolean
+      path: statics/core.stx
+    tests: []
+  96:
+    rule:
+      id: 96
+      constraint: typeOfPrimitiveType
+      head: typeOfPrimitiveType(Float())
+      constructors:
+      - Float
+      path: statics/core.stx
+    tests:
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'Error on call with wrong type '
+  97:
+    rule:
+      id: 97
+      constraint: typeOfPrimitiveType
+      head: typeOfPrimitiveType(Datetime())
+      constructors:
+      - Datetime
+      path: statics/core.stx
+    tests: []
+  98:
+    rule:
+      id: 98
+      constraint: typeOfPrimitiveType
+      head: typeOfPrimitiveType(Int())
+      constructors:
+      - Int
+      path: statics/core.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  99:
+    rule:
+      id: 99
+      constraint: typeOfPrimitiveType
+      head: typeOfPrimitiveType(String())
+      constructors:
+      - String
+      path: statics/core.stx
+    tests:
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on overriding field with wrong type '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Resolve invalid Identifier fails (attribute) '
+  100:
+    rule:
+      id: 100
+      constraint: typeOfEntityType
+      head: typeOfEntityType(s, EntityType(id))
+      constructors:
+      - EntityType
+      path: statics/core.stx
+    tests:
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'Duplicate entity fails '
+    - 'Resolve Identifier to entity '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid Identifier fails (entity instance) '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  101:
+    rule:
+      id: 101
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(Int(_))
+      constructors:
+      - Int
+      path: statics/core.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on inline cycle '
+    - 'Resolve attribute in entity instance without type '
+    - 'Error on non existing attribute in entity instance without type '
+    - 'No error on existing attribute in entity instance without type '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'error on attribute and role with same name '
+    - 'error on attribute and inverse with same name '
+    - 'error on attribute and shortcut with same name '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+    - 'Resolve to shortcut '
+    - 'Resolve invalid role in shortcut fails (shortcut relation) '
+  102:
+    rule:
+      id: 102
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(Float(_))
+      constructors:
+      - Float
+      path: statics/core.stx
+    tests:
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'Error on call with wrong type '
+  103:
+    rule:
+      id: 103
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(True())
+      constructors:
+      - 'True'
+      path: statics/core.stx
+    tests: []
+  104:
+    rule:
+      id: 104
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(False())
+      constructors:
+      - 'False'
+      path: statics/core.stx
+    tests: []
+  105:
+    rule:
+      id: 105
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(String(_))
+      constructors:
+      - String
+      path: statics/core.stx
+    tests:
+    - 'Duplicate attribute fails '
+    - 'Resolve attribute from Identifier '
+    - 'Resolve attribute from this.attribute '
+    - 'Resolve invalid this.attribute fails '
+    - 'Resolve entity.invalid attribute fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'error on overriding field with wrong type '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'Resolve invalid Identifier fails (attribute) '
+  106:
+    rule:
+      id: 106
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(Datetime(_))
+      constructors:
+      - Datetime
+      path: statics/core.stx
+    tests: []
+  107:
+    rule:
+      id: 107
+      constraint: richTypeOfLitVal
+      head: richTypeOfLitVal(NoValue())
+      constructors:
+      - NoValue
+      path: statics/core.stx
+    tests: []
+  108:
+    rule:
+      id: 108
+      constraint: declareInheritance
+      head: declareInheritance(s_entity, entity_id, [extends_decl@OptionalExtends(node@Extends(parent_entity))])
+      constructors:
+      - OptionalExtends
+      - Extends
+      path: statics/core.stx
+    tests:
+    - 'Error on overriding inline '
+    - 'Error on overriding inline '
+    - 'Error on overriding with inline '
+    - 'Error on overriding with inline '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve filter type '
+    - 'resolve filter type 2 '
+    - 'resolve filter type 2 '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'resolve concat super type not root derefence '
+    - 'error on cyclic traits '
+    - 'error on cyclic traits '
+    - 'no error on acyclic traits '
+    - 'no error on acyclic traits '
+    - 'resolve parent '
+    - 'resolve parent '
+    - 'unresolved parent error '
+    - 'unresolved parent error '
+    - 'no error on overriding field '
+    - 'no error on overriding field '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong type '
+    - 'error on overriding field with wrong multiplicity '
+    - 'error on overriding field with wrong multiplicity '
+    - 'resolve to overriden member '
+    - 'resolve to overriden member '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overridingg field with wrong derivation type '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 2 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 3 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 4 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 5 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 6 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'error on overriding field with wrong derivation type 7 '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 2 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 3 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 4 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 5 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 6 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 7 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 8 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'no error on overriding field with correct derivation type 9 '
+    - 'resolve attribute subtype '
+    - 'resolve attribute subtype '
+    - 'unresolved member error '
+    - 'unresolved member error '
+    - 'resolve attribute subsubtype '
+    - 'resolve attribute subsubtype '
+    - 'resolve relation subtype '
+    - 'resolve relation subtype '
+    - 'resolve relation attribute subtype '
+    - 'resolve relation attribute subtype '
+  109:
+    rule:
+      id: 109
+      constraint: functionOk
+      head: functionOk(s, Function(f, ps, t, m, e))
+      constructors:
+      - Function
+      path: statics/functions.stx
+    tests:
+    - 'Resolve shortcut '
+    - 'Resolve invalid shortcut fails '
+    - 'Resolve attribute from role.attribute '
+    - "(TS/1) Resolve invalid role.attribute fails "
+    - 'Resolve role  '
+    - 'Resolve inverse  '
+    - 'Error on wrong number of arguments for built-in function '
+    - 'No error on correct number of arguments for built-in function '
+    - 'Resolve inverse '
+    - 'Resolve invalid inverse fails '
+    - 'resolve filter type expression member access '
+    - 'resolve filter type '
+    - 'resolve concat super type derefence '
+    - 'resolve concat super type not root derefence '
+    - 'Error on duplicate function name '
+    - 'Resolve function name '
+    - 'Error on call to non existing function '
+    - 'Error on call with wrong number of arguments '
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+  110:
+    rule:
+      id: 110
+      constraint: parameterOk
+      head: parameterOk(s, param@Parameter(p, t, m))
+      constructors:
+      - Parameter
+      path: statics/functions.stx
+    tests:
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+  111:
+    rule:
+      id: 111
+      constraint: richtypeOfParameter
+      head: richtypeOfParameter(s, Parameter(p, t, m))
+      constructors:
+      - Parameter
+      path: statics/functions.stx
+    tests:
+    - 'Error on call with wrong number of arguments 2 '
+    - 'Error on call with wrong type '
+progress:
+  'Duplicate entity type fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+  'Duplicate relation fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+  'Resolve relation member to entity ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve invalid relation member fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve shortcut ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve invalid shortcut fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve role in shortcut ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on duplicate shortcut ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+  'error on duplicate shortcut by desugaring ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Duplicate attribute fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+  'Resolve attribute from Identifier ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Resolve attribute from this.attribute ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+  'Resolve invalid this.attribute fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+  'Resolve entity.invalid attribute fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - MemberValue
+      - memberValueOk
+    : true
+    ? - LitVal
+      - typeOfValue
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Resolve attribute from role.attribute ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ChoiceLeft
+      - richTypeOfExp
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  "(TS/1) Resolve invalid role.attribute fails ":
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ChoiceLeft
+      - richTypeOfExp
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Error on overriding inline ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Inline
+      - memberOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Multiplication
+      - richTypeOfExp
+    : true
+  'Error on overriding with inline ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Multiplication
+      - richTypeOfExp
+    : true
+    ? - Inline
+      - memberOk
+    : true
+  'Error on inline cycle ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Addition
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - Inline
+      - memberOk
+    : true
+  'Duplicate role fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve role  ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve inverse  ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on duplicate role ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on duplicate role by desugaring ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve attribute in entity instance without type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - MemberValue
+      - memberValueOk
+    : true
+    ? - LitVal
+      - typeOfValue
+    : true
+    ? - EntityInstanceValue2Value
+      - typeOfValue
+    : true
+    ? - EntityInstance2EntityInstanceValue
+      - typeOfEntityInstanceValue
+    : true
+    ? - EntityInstanceNoType
+      - entityInstanceOk
+    : true
+  'Error on non existing attribute in entity instance without type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - MemberValue
+      - memberValueOk
+    : true
+    ? - LitVal
+      - typeOfValue
+    : true
+    ? - EntityInstanceValue2Value
+      - typeOfValue
+    : true
+    ? - EntityInstance2EntityInstanceValue
+      - typeOfEntityInstanceValue
+    : true
+    ? - EntityInstanceNoType
+      - entityInstanceOk
+    : true
+  'No error on existing attribute in entity instance without type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - MemberValue
+      - memberValueOk
+    : true
+    ? - LitVal
+      - typeOfValue
+    : true
+    ? - EntityInstanceValue2Value
+      - typeOfValue
+    : true
+    ? - EntityInstance2EntityInstanceValue
+      - typeOfEntityInstanceValue
+    : true
+    ? - EntityInstanceNoType
+      - entityInstanceOk
+    : true
+  'Error on wrong number of arguments for built-in function ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Merge
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+  'No error on correct number of arguments for built-in function ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Merge
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+  'Resolve find variable ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - RelationDerived
+      - modelOk
+    : true
+    ? - Find
+      - richTypeOfExp
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - Equal
+      - richTypeOfExp
+    : true
+  'Resolve filter variable ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - RelationDerived
+      - modelOk
+    : true
+    ? - Filter
+      - richTypeOfExp
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - Equal
+      - richTypeOfExp
+    : true
+  'Resolve inverse ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve invalid inverse fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on duplicate inverse ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+  'error on duplicate inverse by desugaring ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'resolve filter type expression member access ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Float
+      - zeroness
+    : true
+    ? - Float
+      - typeOfPrimitiveType
+    : true
+    ? - Float
+      - richTypeOfLitVal
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - FilterType
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+  'resolve filter type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Float
+      - zeroness
+    : true
+    ? - Float
+      - typeOfPrimitiveType
+    : true
+    ? - Float
+      - richTypeOfLitVal
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - FilterType
+      - richTypeOfExp
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+  'resolve filter type 2 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - RelationDerived
+      - modelOk
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ChoiceLeft
+      - richTypeOfExp
+    : true
+    ? - FilterType
+      - richTypeOfExp
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - This
+      - richTypeOfExp
+    : true
+  'resolve concat super type derefence ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Float
+      - zeroness
+    : true
+    ? - Float
+      - typeOfPrimitiveType
+    : true
+    ? - Float
+      - richTypeOfLitVal
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Merge
+      - richTypeOfExp
+    : true
+  'resolve concat super type not root derefence ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Float
+      - zeroness
+    : true
+    ? - Float
+      - typeOfPrimitiveType
+    : true
+    ? - Float
+      - richTypeOfLitVal
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Merge
+      - richTypeOfExp
+    : true
+  'error on cyclic traits ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'no error on acyclic traits ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'resolve parent ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'unresolved parent error ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'no error on overriding field ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'error on overriding field with wrong type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+  'error on overriding field with wrong multiplicity ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+  'resolve to overriden member ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'error on overridingg field with wrong derivation type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+  'error on overriding field with wrong derivation type 2 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+  'error on overriding field with wrong derivation type 3 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+  'error on overriding field with wrong derivation type 4 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+  'error on overriding field with wrong derivation type 5 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+  'error on overriding field with wrong derivation type 6 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'error on overriding field with wrong derivation type 7 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+  'no error on overriding field with correct derivation type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'no error on overriding field with correct derivation type 2 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+  'no error on overriding field with correct derivation type 3 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'no error on overriding field with correct derivation type 4 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - AbstractAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'no error on overriding field with correct derivation type 5 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'no error on overriding field with correct derivation type 6 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'no error on overriding field with correct derivation type 7 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'no error on overriding field with correct derivation type 8 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+  'no error on overriding field with correct derivation type 9 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DefaultAttribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+  'resolve attribute subtype ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'unresolved member error ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'resolve attribute subsubtype ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'resolve relation subtype ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'resolve relation attribute subtype ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - OptionalExtends
+      - declareInheritance
+    : true
+    ? - Extends
+      - declareInheritance
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'error on attribute and role with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+  'error on attribute and inverse with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+  'error on attribute and shortcut with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on role and inverse with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+  'error on role and shortcut with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'error on inverse and shortcut with same name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Duplicate entity fails ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+  'Resolve Identifier to entity ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Error on duplicate function name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+  'Resolve function name ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+  'Error on call to non existing function ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+  'Error on call with wrong number of arguments ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Error on call with wrong number of arguments 2 ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Parameter
+      - parameterOk
+    : true
+    ? - Parameter
+      - richtypeOfParameter
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+  'Error on call with wrong type ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - FunctionSection
+      - sectionOk
+    : true
+    ? - Function
+      - richTypeOfExp
+    : true
+    ? - Function
+      - functionOk
+    : true
+    ? - Parameter
+      - parameterOk
+    : true
+    ? - Parameter
+      - richtypeOfParameter
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Literal
+      - valueOk
+    : true
+    ? - Literal
+      - richTypeOfExp
+    : true
+    ? - Literal
+      - zeroness
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+    ? - Float
+      - zeroness
+    : true
+    ? - Float
+      - typeOfPrimitiveType
+    : true
+    ? - Float
+      - richTypeOfLitVal
+    : true
+  'Resolve to shortcut ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Resolve invalid role in shortcut fails (relation shortcut) ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - OneOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+  'Resolve invalid Identifier fails (attribute) ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DerivationAttribute
+      - memberOk
+    : true
+    ? - TypePrimitive
+      - typeOfAnyType
+    : true
+    ? - String
+      - typeOfPrimitiveType
+    : true
+    ? - String
+      - richTypeOfLitVal
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Resolve invalid Identifier fails (entity instance) ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true
+  'Resolve invalid role in shortcut fails (shortcut relation) ':
+    ? - Module
+      - fileOk
+    : true
+    ? - Module
+      - programOk
+    : true
+    ? - Module
+      - moduleOk
+    : true
+    ? - Incremental
+      - stratOfStrat
+    : true
+    ? - ConfigSection
+      - sectionOk
+    : true
+    ? - Entity
+      - modelOk
+    : true
+    ? - Role
+      - memberOk
+    : true
+    ? - ID2DotID
+      - nameOfDotID
+    : true
+    ? - MultiplicityOrdering2SpaceMultiplicity
+      - multOfSpaceMultiplicity
+    : true
+    ? - Multiplicity2MultiplicityOrdering
+      - multOfMultOrd
+    : true
+    ? - ZeroOrOne
+      - multOfMult
+    : true
+    ? - ID2SpaceArrowID
+      - nameOfSpaceArrowID
+    : true
+    ? - ZeroOrMore
+      - multOfMult
+    : true
+    ? - Shortcut
+      - memberOk
+    : true
+    ? - Attribute
+      - memberOk
+    : true
+    ? - Int
+      - zeroness
+    : true
+    ? - Int
+      - typeOfPrimitiveType
+    : true
+    ? - Int
+      - richTypeOfLitVal
+    : true
+    ? - One
+      - multOfMult
+    : true
+    ? - DataSection
+      - sectionOk
+    : true
+    ? - EntityInstance2Data
+      - dataOk
+    : true
+    ? - EntityInstance
+      - entityInstanceOk
+    : true
+    ? - ID2IDSpace
+      - ameOfIDSpace
+    : true
+    ? - EntityType
+      - typeOfEntityType
+    : true
+    ? - ExecuteSection
+      - sectionOk
+    : true
+    ? - Exp2Execute
+      - executeOk
+    : true
+    ? - MemberAccess
+      - richTypeOfExp
+    : true
+    ? - Ref
+      - richTypeOfExp
+    : true

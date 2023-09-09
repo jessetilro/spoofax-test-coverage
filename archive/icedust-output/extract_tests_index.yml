@@ -1,0 +1,111 @@
+---
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/parents.spt:
+- "resolve parent "
+- "unresolved parent error "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/inlining.spt:
+- "Error on overriding inline "
+- "Error on overriding with inline "
+- "Error on inline cycle "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/members-multiple.spt: []
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/members-override.spt:
+- "no error on overriding field "
+- "error on overriding field with wrong type "
+- "error on overriding field with wrong multiplicity "
+- "resolve to overriden member "
+- "error on overridingg field with wrong derivation type "
+- "error on overriding field with wrong derivation type 2 "
+- "error on overriding field with wrong derivation type 3 "
+- "error on overriding field with wrong derivation type 4 "
+- "error on overriding field with wrong derivation type 5 "
+- "error on overriding field with wrong derivation type 6 "
+- "error on overriding field with wrong derivation type 7 "
+- "no error on overriding field with correct derivation type "
+- "no error on overriding field with correct derivation type 2 "
+- "no error on overriding field with correct derivation type 3 "
+- "no error on overriding field with correct derivation type 4 "
+- "no error on overriding field with correct derivation type 5 "
+- "no error on overriding field with correct derivation type 6 "
+- "no error on overriding field with correct derivation type 7 "
+- "no error on overriding field with correct derivation type 8 "
+- "no error on overriding field with correct derivation type 9 "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/shortcuts.spt:
+- "Resolve shortcut "
+- "Resolve invalid shortcut fails "
+- "Resolve role in shortcut "
+- "Resolve invalid role in shortcut fails (relation shortcut) "
+- "error on duplicate shortcut "
+- "error on duplicate shortcut by desugaring "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/members.spt:
+- "error on attribute and role with same name "
+- "error on attribute and inverse with same name "
+- "error on attribute and shortcut with same name "
+- "error on role and inverse with same name "
+- "error on role and shortcut with same name "
+- "error on inverse and shortcut with same name "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/functions.spt:
+- "Error on duplicate function name "
+- "Resolve function name "
+- "Error on call to non existing function "
+- "Error on call with wrong number of arguments "
+- "Error on call with wrong number of arguments 2 "
+- "Error on call with wrong type "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/attributes.spt:
+- "Duplicate attribute fails "
+- "Resolve attribute from Identifier "
+- "Resolve invalid Identifier fails (attribute) "
+- "Resolve attribute from this.attribute "
+- "Resolve invalid this.attribute fails "
+- "Resolve entity.invalid attribute fails "
+- "Resolve attribute from role.attribute "
+- "(TS/1) Resolve invalid role.attribute fails "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/data.spt:
+- "Resolve attribute in entity instance without type "
+- "Error on non existing attribute in entity instance without type "
+- "No error on existing attribute in entity instance without type "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/builtin.spt:
+- "Error on wrong number of arguments for built-in function "
+- "No error on correct number of arguments for built-in function "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/entities.spt:
+- "Duplicate entity type fails "
+- "Duplicate relation fails "
+- "Resolve relation member to entity "
+- "Resolve invalid relation member fails "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/data.spt: []
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/entityinstances.spt:
+- "Duplicate entity fails "
+- "Resolve Identifier to entity "
+- "Resolve invalid Identifier fails (entity instance) "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/members.spt:
+- "resolve attribute subtype "
+- "unresolved member error "
+- "resolve attribute subsubtype "
+- "resolve relation subtype "
+- "resolve relation attribute subtype "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/cycle.spt:
+- "error on cyclic traits "
+- "no error on acyclic traits "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/inverses.spt:
+- "Resolve inverse "
+- "Resolve invalid inverse fails "
+- "error on duplicate inverse "
+- "error on duplicate inverse by desugaring "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/filtertype.spt:
+- "resolve filter type expression member access "
+- "resolve filter type "
+- "resolve filter type 2 "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/roles.spt:
+- "Duplicate role fails "
+- "Resolve role  "
+- "Resolve inverse  "
+- "error on duplicate role "
+- "error on duplicate role by desugaring "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/filter.spt:
+- "Resolve find variable "
+- "Resolve filter variable "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/shortcutrel.spt:
+- "Resolve to shortcut "
+- "Resolve invalid role in shortcut fails (shortcut relation) "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/concat.spt:
+- "resolve concat super type derefence "
+- "resolve concat super type not root derefence "
+/home/jesse/source/spoofax-test-coverage/../thesis/develop.test/static-semantics/names/traits/parents-multiple.spt: []

@@ -1,0 +1,905 @@
+---
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entities.spt"
+  description: "Duplicate entity type fails "
+  text: "\n  module test\n  model\n  \n  entity User {}\n  entity User {}\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[]),Entity(\"User\",[],[],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entities.spt"
+  description: "Duplicate relation fails "
+  text: "\n  module test\n  model\n  \n  entity User{}\n  entity Book{}\n  relation\
+    \ Owns{\n    User *\n    Book 1\n  }\n  relation Owns{\n    User.x * -> user1\n\
+    \    Book.y 1 -> book1\n  }\n  config\n    language features : first-class relations\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ModelSection([Entity(\"User\",[],[],[]),Entity(\"\
+    Book\",[],[],[]),FirstClassRelation(\"Owns\",[],[],[Role(\"User\",[ID2DotID(\"\
+    owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    user\")]),Role(\"Book\",[ID2DotID(\"owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    book\")]),Shortcut(\"book\",[ID2DotID(\"user\")],\"user\",[ID2DotID(\"book\")])]),FirstClassRelation(\"\
+    Owns\",[],[],[Role(\"User\",[ID2DotID(\"x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    user1\")]),Role(\"Book\",[ID2DotID(\"y\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    book1\")]),Shortcut(\"book1\",[ID2DotID(\"user1\")],\"user1\",[ID2DotID(\"book1\"\
+    )])])]),ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entities.spt"
+  description: "Resolve relation member to entity "
+  text: "\n  module test\n  model\n  \n  entity User{}\n  entity Book{}\n  relation\
+    \ Owns{\n    User *\n    Book 1\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[]),Entity(\"Book\",[],[],[]),FirstClassRelation(\"Owns\",[],[],[Role(\"\
+    User\",[ID2DotID(\"owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    user\")]),Role(\"Book\",[ID2DotID(\"owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    book\")]),Shortcut(\"book\",[ID2DotID(\"user\")],\"user\",[ID2DotID(\"book\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entities.spt"
+  description: "Resolve invalid relation member fails "
+  text: "\n  module test\n  model\n  \n  entity User{}\n  entity Book{}\n  relation\
+    \ Owns{\n    User *\n    Paper 1\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[]),Entity(\"Book\",[],[],[]),FirstClassRelation(\"Owns\",[],[],[Role(\"\
+    User\",[ID2DotID(\"owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    user\")]),Role(\"Paper\",[ID2DotID(\"owns\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    paper\")]),Shortcut(\"paper\",[ID2DotID(\"user\")],\"user\",[ID2DotID(\"paper\"\
+    )])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "Resolve shortcut "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Student{\n\
+    \    numCourses : Int = count(this.courses)\n  }\n  \n  relation Enrollment{\n\
+    \    Student *\n    Course  +\n    \n    student.courses <-> course.students\n\
+    \  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[DerivationAttribute(\"numCourses\"\
+    ,TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Function(\"count\"\
+    ,[MemberAccess(This,\"courses\")]),[])]),FirstClassRelation(\"Enrollment\",[],[],[Role(\"\
+    Student\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"courses\")],\"course\",[ID2DotID(\"\
+    students\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "Resolve invalid shortcut fails "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Student{\n\
+    \    numCourses : Int = count(this.iDoNotExist)\n  }\n  \n  relation Enrollment{\n\
+    \    Student *\n    Course  +\n    \n    student.courses <-> course.students\n\
+    \  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[DerivationAttribute(\"numCourses\"\
+    ,TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Function(\"count\"\
+    ,[MemberAccess(This,\"iDoNotExist\")]),[])]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"courses\")],\"course\",[ID2DotID(\"\
+    students\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "Resolve role in shortcut "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Student{\n\
+    \  }\n  \n  relation Enrollment{\n    Student.y * -> student\n    Course.x  +\
+    \ -> course\n    \n    student.abc <-> student.bcd\n  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"y\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"abc\")],\"student\",[ID2DotID(\"\
+    bcd\")]),Shortcut(\"course\",[ID2DotID(\"student\")],\"student\",[ID2DotID(\"\
+    course\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "Resolve invalid role in shortcut fails (relation shortcut) "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Student{\n\
+    \  }\n  \n  relation Enrollment{\n    Student *\n    Course  +\n    \n    student.abc\
+    \ <-> iDoNotExist.bcd\n  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"abc\")],\"iDoNotExist\",[ID2DotID(\"\
+    bcd\")]),Shortcut(\"course\",[ID2DotID(\"student\")],\"student\",[ID2DotID(\"\
+    course\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "error on duplicate shortcut "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Node\
+    \ {}\n  relation Edge {\n    Node.c 1 -> a\n    Node.d 1 -> b\n    \n    a.node\
+    \ <-> b.node\n  }\n  \nconfig\n\n  language features : first-class relations\n\
+    \n"
+  ast: "Module(\"inverses\",[Incremental],[ModelSection([Entity(\"Course\",[],[],[]),Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"\
+    c\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    a\")]),Role(\"Node\",[ID2DotID(\"d\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    b\")]),Shortcut(\"a\",[ID2DotID(\"node\")],\"b\",[ID2DotID(\"node\")])])]),ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcuts.spt"
+  description: "error on duplicate shortcut by desugaring "
+  text: "\n  module inverses\n\n  model\n  \n    \n  entity Course{}\n  entity Project{}\n\
+    \  entity Issue{}\n\n  relation IssueProject{\n    Issue 1\n    Project *\n  }\n\
+    \  \n  relation ProjectIssue{\n    Issue 1\n    Project *\n  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Project\",[],[],[]),Entity(\"Issue\",[],[],[]),FirstClassRelation(\"\
+    IssueProject\",[],[],[Role(\"Issue\",[ID2DotID(\"issueProject\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    issue\")]),Role(\"Project\",[ID2DotID(\"issueProject\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    project\")]),Shortcut(\"issue\",[ID2DotID(\"project\")],\"project\",[ID2DotID(\"\
+    issue\")])]),FirstClassRelation(\"ProjectIssue\",[],[],[Role(\"Issue\",[ID2DotID(\"\
+    projectIssue\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    issue\")]),Role(\"Project\",[ID2DotID(\"projectIssue\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    project\")]),Shortcut(\"issue\",[ID2DotID(\"project\")],\"project\",[ID2DotID(\"\
+    issue\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Duplicate attribute fails "
+  text: "\n  module test\n  model\n  \n  entity User {\n    name : String\n    name\
+    \ : String\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[Attribute(\"name\",String,[One]),Attribute(\"name\",String,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve attribute from Identifier "
+  text: "\n  module test\n  model\n  \n  entity User {\n    name : String = name\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Ref(\"\
+    name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve invalid Identifier fails (attribute) "
+  text: "\n  module test\n  model\n  \n  entity User {\n    name : String = x\n  }\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Ref(\"\
+    x\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve attribute from this.attribute "
+  text: "\n  module test\n  model\n  \n  entity User {\n    name : String = this.name\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],MemberAccess(This,\"\
+    name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve invalid this.attribute fails "
+  text: "\n  module test\n  model\n  \n  entity User {\n    name : String = this.x\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],MemberAccess(This,\"\
+    x\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve entity.invalid attribute fails "
+  text: "\n  module test\n  model\n  \n  entity Node {\n    name : String\n  }\n \
+    \ relation Edge{\n    Node.x * -> in\n    Node   * -> out\n  }\n  data\n  n :\
+    \ Node {\n    name = \"a\"\n  }\n  execute\n  n.notin\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[Attribute(\"name\",String,[One])]),FirstClassRelation(\"Edge\",[],[],[Role(\"\
+    Node\",[ID2DotID(\"x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"edgeAsOut\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    out\")]),Shortcut(\"in\",[ID2DotID(\"out\")],\"out\",[ID2DotID(\"in\")])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    n\")],EntityType(\"Node\"),[MemberValue(\"name\",[LitVal(String(LitString2InterpolateString(LitString(\"\
+    a\"))))])]))]),ExecuteSection([Exp2Execute(MemberAccess(Ref(\"n\"),\"notin\"))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "Resolve attribute from role.attribute "
+  text: "\n  module test\n  model\n  \n  entity Node {\n    name : String = concat(this.in.out.name)\
+    \ <+ \"\"\n  }\n  relation Edge{\n    Node.in *  -> in\n    Node.out * -> out\n\
+    \    in.a <-> out.b\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],ChoiceLeft(Function(\"\
+    concat\",[MemberAccess(MemberAccess(MemberAccess(This,\"in\"),\"out\"),\"name\"\
+    )]),Literal(String(LitString2InterpolateString(LitString(\"\"))))),[])]),FirstClassRelation(\"\
+    Edge\",[],[],[Role(\"Node\",[ID2DotID(\"in\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"out\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    out\")]),Shortcut(\"in\",[ID2DotID(\"a\")],\"out\",[ID2DotID(\"b\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/attributes.spt"
+  description: "(TS/1) Resolve invalid role.attribute fails "
+  text: "\n  module test\n  model\n  \n  entity Node {\n    name : String = concat(this.in.out.x)\
+    \ <+ \"\"\n  }\n  relation Edge{\n    Node.in *  -> in\n    Node.out * -> out\n\
+    \    in.a <-> out.b\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],ChoiceLeft(Function(\"\
+    concat\",[MemberAccess(MemberAccess(MemberAccess(This,\"in\"),\"out\"),\"x\")]),Literal(String(LitString2InterpolateString(LitString(\"\
+    \"))))),[])]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"in\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"out\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    out\")]),Shortcut(\"in\",[ID2DotID(\"a\")],\"out\",[ID2DotID(\"b\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inlining.spt"
+  description: "Error on overriding inline "
+  text: "\nmodule test\nmodel\n\n  entity Foo {\n    a : Int = 42 (inline)\n  }\n\
+    \  \n  entity Bar extends Foo {\n    a : Int = 21 * 2\n  }\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[],[],[DerivationAttribute(\"a\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    42\")),[Inline])]),Entity(\"Bar\",[OptionalExtends(Extends(\"Foo\"))],[],[DerivationAttribute(\"\
+    a\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Multiplication(Literal(Int(\"\
+    21\")),Literal(Int(\"2\"))),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inlining.spt"
+  description: "Error on overriding with inline "
+  text: "\nmodule test\nmodel\n\n  entity Foo {\n    a : Int = 42\n  }\n  \n  entity\
+    \ Bar extends Foo {\n    a : Int = 21 * 2 (inline)\n  }\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[],[],[DerivationAttribute(\"a\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    42\")),[])]),Entity(\"Bar\",[OptionalExtends(Extends(\"Foo\"))],[],[DerivationAttribute(\"\
+    a\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Multiplication(Literal(Int(\"\
+    21\")),Literal(Int(\"2\"))),[Inline])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inlining.spt"
+  description: "Error on inline cycle "
+  text: "\nmodule test\nmodel\n\n  entity Foo {\n    a : Int = 42\n    b : Int = 5\
+    \ + a + b (inline)\n  }\n  \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[],[],[DerivationAttribute(\"a\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    42\")),[]),DerivationAttribute(\"b\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Addition(Addition(Literal(Int(\"\
+    5\")),Ref(\"a\")),Ref(\"b\")),[Inline])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/roles.spt"
+  description: "Duplicate role fails "
+  text: "\n  module test\n  model\n  \n  entity Node {\n  }\n  relation Edge{\n  \
+    \  Node.x * -> in\n    Node   * -> in\n    \n    in.c <-> in.d\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"\
+    x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"edgeAsIn\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Shortcut(\"in\",[ID2DotID(\"c\")],\"in\",[ID2DotID(\"d\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/roles.spt"
+  description: "Resolve role  "
+  text: "\n  module test\n  model\n  \n  entity Node {\n    name : String = concat(this.in.out.name)\n\
+    \  }\n  relation Edge{\n    Node.in +  -> in\n    Node.out * -> out\n    in.a\
+    \ <-> out.b\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Function(\"\
+    concat\",[MemberAccess(MemberAccess(MemberAccess(This,\"in\"),\"out\"),\"name\"\
+    )]),[])]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"in\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"out\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    out\")]),Shortcut(\"in\",[ID2DotID(\"a\")],\"out\",[ID2DotID(\"b\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/roles.spt"
+  description: "Resolve inverse  "
+  text: "\n  module test\n  model\n  \n  entity Node {\n    name : String = concat(this.in.out.name)\n\
+    \  }\n  relation Edge{\n    Node.in + -> in \n    Node.out *    -> out\n    in.a\
+    \ <-> out.b\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[DerivationAttribute(\"name\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Function(\"\
+    concat\",[MemberAccess(MemberAccess(MemberAccess(This,\"in\"),\"out\"),\"name\"\
+    )]),[])]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"in\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    in\")]),Role(\"Node\",[ID2DotID(\"out\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    out\")]),Shortcut(\"in\",[ID2DotID(\"a\")],\"out\",[ID2DotID(\"b\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/roles.spt"
+  description: "error on duplicate role "
+  text: "\n  module test\n  model\n  \n  entity Node {}\n  relation Edge {\n    Node.a\
+    \ 1 -> node\n    Node.b 1 -> node\n    \n    node.c <-> node.d\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"\
+    a\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Role(\"Node\",[ID2DotID(\"b\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Shortcut(\"node\",[ID2DotID(\"c\")],\"node\",[ID2DotID(\"d\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/roles.spt"
+  description: "error on duplicate role by desugaring "
+  text: "\n  module test\n  model\n  \n  entity Node {}\n  relation Edge {\n    Node\
+    \ 1\n    Node 1\n    \n    node.c <-> node.d\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"\
+    edgeAsNode\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Role(\"Node\",[ID2DotID(\"edgeAsNode\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Shortcut(\"node\",[ID2DotID(\"c\")],\"node\",[ID2DotID(\"d\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/data.spt"
+  description: "Resolve attribute in entity instance without type "
+  text: "\n  module test\n  model\n    entity Foo {\n      i : Int\n    }\n    relation\
+    \ Foo.foreward <-> Foo.backward {}\n  data\n    foo : Foo {\n      i = 5\n   \
+    \   foreward = \n        innerFoo {\n          i = 7\n        }\n    }\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[],[],[Attribute(\"i\",Int,[One])]),FirstClassRelation(\"FooForewardRelation\"\
+    ,[],[],[Role(\"Foo\",[ID2DotID(\"forewardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    backward\")]),Role(\"Foo\",[ID2DotID(\"backwardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    foreward\")]),Shortcut(\"foreward\",[ID2DotID(\"backward\")],\"backward\",[ID2DotID(\"\
+    foreward\")])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    foo\")],EntityType(\"Foo\"),[MemberValue(\"i\",[LitVal(Int(\"5\"))]),MemberValue(\"\
+    foreward\",[EntityInstanceValue2Value(EntityInstance2EntityInstanceValue(EntityInstanceNoType([ID2IDSpace(\"\
+    innerFoo\")],[MemberValue(\"i\",[LitVal(Int(\"7\"))])])))])]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/data.spt"
+  description: "Error on non existing attribute in entity instance without type "
+  text: "\n  module test\n  model\n    entity Foo {\n      i : Int\n    }\n    relation\
+    \ Foo.foreward <-> Foo.backward {}\n  data\n    foo : Foo {\n      i = 5\n   \
+    \   foreward = \n        innerFoo {\n          i = 7\n          j = 7\n      \
+    \  }\n    }\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[],[],[Attribute(\"i\",Int,[One])]),FirstClassRelation(\"FooForewardRelation\"\
+    ,[],[],[Role(\"Foo\",[ID2DotID(\"forewardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    backward\")]),Role(\"Foo\",[ID2DotID(\"backwardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    foreward\")]),Shortcut(\"foreward\",[ID2DotID(\"backward\")],\"backward\",[ID2DotID(\"\
+    foreward\")])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    foo\")],EntityType(\"Foo\"),[MemberValue(\"i\",[LitVal(Int(\"5\"))]),MemberValue(\"\
+    foreward\",[EntityInstanceValue2Value(EntityInstance2EntityInstanceValue(EntityInstanceNoType([ID2IDSpace(\"\
+    innerFoo\")],[MemberValue(\"i\",[LitVal(Int(\"7\"))]),MemberValue(\"j\",[LitVal(Int(\"\
+    7\"))])])))])]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/data.spt"
+  description: "No error on existing attribute in entity instance without type "
+  text: "\n  module test\n  config\n    language features : first-class relations\n\
+    \  model\n    entity Foo {\n      i : Int\n    }\n    relation Foo.foreward <->\
+    \ Foo.backward {}\n  data\n    foo : Foo {\n      i = 5\n      foreward = \n \
+    \       innerFoo {\n          i = 7\n        }\n    }\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([Entity(\"\
+    Foo\",[],[],[Attribute(\"i\",Int,[One])]),FirstClassRelation(\"FooForewardRelation\"\
+    ,[],[],[Role(\"Foo\",[ID2DotID(\"forewardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    backward\")]),Role(\"Foo\",[ID2DotID(\"backwardRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    foreward\")]),Shortcut(\"foreward\",[ID2DotID(\"backward\")],\"backward\",[ID2DotID(\"\
+    foreward\")])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    foo\")],EntityType(\"Foo\"),[MemberValue(\"i\",[LitVal(Int(\"5\"))]),MemberValue(\"\
+    foreward\",[EntityInstanceValue2Value(EntityInstance2EntityInstanceValue(EntityInstanceNoType([ID2IDSpace(\"\
+    innerFoo\")],[MemberValue(\"i\",[LitVal(Int(\"7\"))])])))])]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/builtin.spt"
+  description: "Error on wrong number of arguments for built-in function "
+  text: "\n  module test\n  execute\n  \n  first(1++2,3,4)\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ExecuteSection([Exp2Execute(Function(\"\
+    first\",[Merge(Literal(Int(\"1\")),Literal(Int(\"2\"))),Literal(Int(\"3\")),Literal(Int(\"\
+    4\"))]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/builtin.spt"
+  description: "No error on correct number of arguments for built-in function "
+  text: "\n  module test\n  execute\n  \n  first(1++2,3)\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ExecuteSection([Exp2Execute(Function(\"\
+    first\",[Merge(Literal(Int(\"1\")),Literal(Int(\"2\"))),Literal(Int(\"3\"))]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/filter.spt"
+  description: "Resolve find variable "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {}\n  entity Submission {}\n\
+    \  entity Student    {}\n  \n  relation Assignment.parent     ? <-> * Assignment.children\n\
+    \  relation Submission.student    1 <-> * Student.submissions\n  relation Submission.assignment\
+    \ 1 <-> * Assignment.submissions\n  relation Submission.parent     ? =  \n   \
+    \ assignment.parent.submissions.find(x => x.student == student)\n            \
+    \                       <-> * Submission.children\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"Submission\",[],[],[]),Entity(\"Student\",[],[],[]),Relation(\"\
+    Assignment\",[ID2DotID(\"parent\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Assignment\",[ID2DotID(\"children\")]),Relation(\"Submission\",[ID2DotID(\"student\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Student\",[ID2DotID(\"submissions\")]),Relation(\"Submission\",[ID2DotID(\"assignment\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Assignment\",[ID2DotID(\"submissions\")]),RelationDerived(\"Submission\",[ID2DotID(\"\
+    parent\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],Find(MemberAccess(MemberAccess(Ref(\"\
+    assignment\"),\"parent\"),\"submissions\"),\"x\",Equal(MemberAccess(Ref(\"x\"\
+    ),\"student\"),Ref(\"student\"))),[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Submission\",[ID2DotID(\"children\")],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/filter.spt"
+  description: "Resolve filter variable "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {}\n  entity Submission {}\n\
+    \  entity Student    {}\n  \n  relation Assignment.parent     ? <-> * Assignment.children\n\
+    \  relation Submission.student    1 <-> * Student.submissions\n  relation Submission.assignment\
+    \ 1 <-> * Assignment.submissions\n  relation Submission.children   * =  \n   \
+    \ assignment.children.submissions.filter(x => x.student == student)\n        \
+    \                           <-> ? Submission.parent\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"Submission\",[],[],[]),Entity(\"Student\",[],[],[]),Relation(\"\
+    Assignment\",[ID2DotID(\"parent\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Assignment\",[ID2DotID(\"children\")]),Relation(\"Submission\",[ID2DotID(\"student\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Student\",[ID2DotID(\"submissions\")]),Relation(\"Submission\",[ID2DotID(\"assignment\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Assignment\",[ID2DotID(\"submissions\")]),RelationDerived(\"Submission\",[ID2DotID(\"\
+    children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],Filter(MemberAccess(MemberAccess(Ref(\"\
+    assignment\"),\"children\"),\"submissions\"),\"x\",Equal(MemberAccess(Ref(\"x\"\
+    ),\"student\"),Ref(\"student\"))),[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Submission\",[ID2DotID(\"parent\")],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inverses.spt"
+  description: "Resolve inverse "
+  text: "\n  module inverses\n\n  model\n  \n    entity Course{}\n    \n    \n  entity\
+    \ Student{\n    numCourses : Int = count(this.enrollments)\n  }\n  \n  relation\
+    \ Enrollment{\n    Student.enrollments * -> student\n    Course.enrollments +\
+    \      -> course\n  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[DerivationAttribute(\"numCourses\"\
+    ,TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Function(\"count\"\
+    ,[MemberAccess(This,\"enrollments\")]),[])]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"enrollments\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollments\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"course\",[ID2DotID(\"student\")],\"student\",[ID2DotID(\"\
+    course\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inverses.spt"
+  description: "Resolve invalid inverse fails "
+  text: "\n  module inverses\n\n  model\n  \n    entity Course{}\n    \n    \n  entity\
+    \ Student{\n    numCourses : Int = count(this.iDoNotExist)\n  }\n  \n  relation\
+    \ Enrollment{\n    Student.enrollments * -> student\n    Course.enrollments +\
+    \  -> course\n  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Student\",[],[],[DerivationAttribute(\"numCourses\"\
+    ,TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Function(\"count\"\
+    ,[MemberAccess(This,\"iDoNotExist\")]),[])]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"enrollments\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollments\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"course\",[ID2DotID(\"student\")],\"student\",[ID2DotID(\"\
+    course\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inverses.spt"
+  description: "error on duplicate inverse "
+  text: "\n  module inverses\n\n  model\n  \n    entity Course{}\n    \n    \n  entity\
+    \ Node {}\n  relation Edge {\n    Node.edge 1 -> a\n    Node.edge 1 -> b\n   \
+    \ a.b <-> b.a\n  }\n  config\n    language features : first-class relations\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ModelSection([Entity(\"Course\",[],[],[]),Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"Node\",[ID2DotID(\"\
+    edge\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    a\")]),Role(\"Node\",[ID2DotID(\"edge\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    b\")]),Shortcut(\"a\",[ID2DotID(\"b\")],\"b\",[ID2DotID(\"a\")])])]),ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/inverses.spt"
+  description: "error on duplicate inverse by desugaring "
+  text: "\n  module inverses\n\n  model\n  \n    entity Course{}\n    \n    \n  entity\
+    \ Node {}\n  relation Edge {\n    Node 1\n    Node 1\n    \n    node.c <-> node.d\n\
+    \  }\n\n"
+  ast: "Module(\"inverses\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Course\",[],[],[]),Entity(\"Node\",[],[],[]),FirstClassRelation(\"Edge\",[],[],[Role(\"\
+    Node\",[ID2DotID(\"edgeAsNode\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Role(\"Node\",[ID2DotID(\"edgeAsNode\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[ID2SpaceArrowID(\"\
+    node\")]),Shortcut(\"node\",[ID2DotID(\"c\")],\"node\",[ID2DotID(\"d\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/filtertype.spt"
+  description: "resolve filter type expression member access "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {\n    grade : Float?\n    a\
+    \     : Float? = this.filter(:CollectionAssignment).grade\n  }\n  \n  entity LeafAssignment\
+    \ extends Assignment {\n  \n  }\n  \n  entity CollectionAssignment extends Assignment\
+    \ {\n    grade : Float? = avg(children.grade)\n  }\n  \n  relation CollectionAssignment.children\
+    \ * <-> ? Assignment.parent\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"grade\",Float,[ZeroOrOne]),DerivationAttribute(\"\
+    a\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],MemberAccess(FilterType(This,EntityType(\"\
+    CollectionAssignment\")),\"grade\"),[])]),Entity(\"LeafAssignment\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[]),Entity(\"CollectionAssignment\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[DerivationAttribute(\"grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Ref(\"children\"),\"grade\")]),[])]),Relation(\"CollectionAssignment\"\
+    ,[ID2DotID(\"children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Assignment\",[ID2DotID(\"parent\")])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/filtertype.spt"
+  description: "resolve filter type "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {\n    grade : Float?\n    a\
+    \     : Float? = this.filter(:CollectionAssignment).grade\n  }\n  \n  entity LeafAssignment\
+    \ extends Assignment {\n  \n  }\n  \n  entity CollectionAssignment extends Assignment\
+    \ {\n    grade : Float? = avg(children.grade)\n  }\n  \n  relation CollectionAssignment.children\
+    \ * <-> ? Assignment.parent\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"grade\",Float,[ZeroOrOne]),DerivationAttribute(\"\
+    a\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],MemberAccess(FilterType(This,EntityType(\"\
+    CollectionAssignment\")),\"grade\"),[])]),Entity(\"LeafAssignment\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[]),Entity(\"CollectionAssignment\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[DerivationAttribute(\"grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Ref(\"children\"),\"grade\")]),[])]),Relation(\"CollectionAssignment\"\
+    ,[ID2DotID(\"children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Assignment\",[ID2DotID(\"parent\")])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/filtertype.spt"
+  description: "resolve filter type 2 "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {\n  }\n  \n  entity LeafAssignment\
+    \ extends Assignment {\n  }\n  \n  entity CollectionAssignment extends Assignment\
+    \ {\n  }\n  \n  relation CollectionAssignment.children * <-> ? Assignment.parent\n\
+    \  \n  relation Assignment.root 1 = parent.root.filter(:CollectionAssignment)\
+    \ <+ this <-> Assignment\n  \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"LeafAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[]),Entity(\"CollectionAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[]),Relation(\"CollectionAssignment\",[ID2DotID(\"children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Assignment\",[ID2DotID(\"parent\")]),RelationDerived(\"Assignment\",[ID2DotID(\"\
+    root\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],ChoiceLeft(FilterType(MemberAccess(Ref(\"\
+    parent\"),\"root\"),EntityType(\"CollectionAssignment\")),This),[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Assignment\",[ID2DotID(\"rootInverse\")],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/concat.spt"
+  description: "resolve concat super type derefence "
+  text: "\nmodule test\nmodel\n\n  entity Assignment {\n    grade : Float?\n  }\n\
+    \  \n  entity LeafAssignment extends Assignment {\n    grade : Float?\n  }\n \
+    \ \n  entity CollectionAssignment extends Assignment {\n    grade : Float? = avg(children.grade)\n\
+    \  }\n  \n  relation CollectionAssignment.children * <-> ? Assignment.parent\n\
+    \  \n  entity Foo {\n    grade : Float? = avg((collections ++ leaves).grade)\n\
+    \  }\n  relation Foo.collections <-> CollectionAssignment.foos\n  relation Foo.leaves\
+    \      <-> LeafAssignment.foos\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"grade\",Float,[ZeroOrOne])]),Entity(\"LeafAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"grade\",Float,[ZeroOrOne])]),Entity(\"\
+    CollectionAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"\
+    grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Ref(\"children\"),\"grade\")]),[])]),Relation(\"CollectionAssignment\"\
+    ,[ID2DotID(\"children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Assignment\",[ID2DotID(\"parent\")]),Entity(\"Foo\",[],[],[DerivationAttribute(\"\
+    grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Merge(Ref(\"collections\"),Ref(\"leaves\")),\"grade\")]),[])]),Relation(\"\
+    Foo\",[ID2DotID(\"collections\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    CollectionAssignment\",[ID2DotID(\"foos\")]),Relation(\"Foo\",[ID2DotID(\"leaves\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    LeafAssignment\",[ID2DotID(\"foos\")])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/concat.spt"
+  description: "resolve concat super type not root derefence "
+  text: "\nmodule test\nmodel\n\n  entity HasGrade {\n    grade : Float?\n  }\n\n\
+    \  entity Assignment extends HasGrade {\n    grade : Float?\n  }\n  \n  entity\
+    \ LeafAssignment extends Assignment {\n    grade : Float?\n  }\n  \n  entity CollectionAssignment\
+    \ extends Assignment {\n    grade : Float? = avg(children.grade)\n  }\n  \n  relation\
+    \ CollectionAssignment.children * <-> ? Assignment.parent\n  \n  entity Foo {\n\
+    \    grade : Float? = avg((collections ++ leaves).grade)\n  }\n  relation Foo.collections\
+    \ <-> CollectionAssignment.foos\n  relation Foo.leaves      <-> LeafAssignment.foos\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    HasGrade\",[],[],[Attribute(\"grade\",Float,[ZeroOrOne])]),Entity(\"Assignment\"\
+    ,[OptionalExtends(Extends(\"HasGrade\"))],[],[Attribute(\"grade\",Float,[ZeroOrOne])]),Entity(\"\
+    LeafAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"grade\"\
+    ,Float,[ZeroOrOne])]),Entity(\"CollectionAssignment\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[DerivationAttribute(\"grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Ref(\"children\"),\"grade\")]),[])]),Relation(\"CollectionAssignment\"\
+    ,[ID2DotID(\"children\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],\"\
+    Assignment\",[ID2DotID(\"parent\")]),Entity(\"Foo\",[],[],[DerivationAttribute(\"\
+    grade\",TypePrimitive(Float),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Function(\"\
+    avg\",[MemberAccess(Merge(Ref(\"collections\"),Ref(\"leaves\")),\"grade\")]),[])]),Relation(\"\
+    Foo\",[ID2DotID(\"collections\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    CollectionAssignment\",[ID2DotID(\"foos\")]),Relation(\"Foo\",[ID2DotID(\"leaves\"\
+    )],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    LeafAssignment\",[ID2DotID(\"foos\")])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/cycle.spt"
+  description: "error on cyclic traits "
+  text: "\n  module test\n  model\n  \n  entity Foo extends Bar {\n  \n  }\n\n  entity\
+    \ Bar extends Foo {\n  \n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[OptionalExtends(Extends(\"Bar\"))],[],[]),Entity(\"Bar\",[OptionalExtends(Extends(\"\
+    Foo\"))],[],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/cycle.spt"
+  description: "no error on acyclic traits "
+  text: "\n  module test\n  model\n  \n  entity Foo extends Bar {\n  }\n\n  entity\
+    \ Bar {\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Foo\",[OptionalExtends(Extends(\"Bar\"))],[],[]),Entity(\"Bar\",[],[],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/parents.spt"
+  description: "resolve parent "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n  }\n\n  entity AssignmentCollection\
+    \ extends Assignment {\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"AssignmentCollection\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/parents.spt"
+  description: "unresolved parent error "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n  }\n\n  entity AssignmentCollection\
+    \ extends Foo {\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"AssignmentCollection\",[OptionalExtends(Extends(\"\
+    Foo\"))],[],[])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int ? (abstract)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int ? = 1\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[AbstractAttribute(\"size\",Int,[ZeroOrOne],[])]),Entity(\"\
+    BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"\
+    size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(ZeroOrOne)],Literal(Int(\"\
+    1\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong type "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : String\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"size\",String,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong multiplicity "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int ?\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"size\",Int,[ZeroOrOne])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "resolve to overriden member "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"size\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overridingg field with wrong derivation type "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"5\")),[])]),Entity(\"\
+    BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"\
+    size\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 2 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int = 6\n  }\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"5\")),[])]),Entity(\"\
+    BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"\
+    size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    6\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 3 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int (abstract)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"5\")),[])]),Entity(\"\
+    BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[AbstractAttribute(\"\
+    size\",Int,[One],[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 4 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 5\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int (abstract)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    5\")),[])]),Entity(\"BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[AbstractAttribute(\"size\",Int,[One],[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 5 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int (abstract)\n \
+    \ }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[AbstractAttribute(\"size\",Int,[One],[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 6 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int = 5\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "error on overriding field with wrong derivation type 7 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 7\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    7\")),[])]),Entity(\"BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[Attribute(\"size\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int (abstract)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int (abstract)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[AbstractAttribute(\"size\",Int,[One],[])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[AbstractAttribute(\"size\",Int,[One],[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 2 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int 1 (abstract)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int 1\n  }\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[AbstractAttribute(\"size\",Int,[One],[])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"size\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 3 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int 1 (abstract)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int 1 = 5\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[AbstractAttribute(\"size\",Int,[One],[])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 4 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int 1 (abstract)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int 1 = 5 (default)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[AbstractAttribute(\"size\",Int,[One],[])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"\
+    5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 5 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[Attribute(\"size\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 6 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int\n  }\n\
+    \n  entity BasicAssignment extends Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"size\",Int,[One])]),Entity(\"BasicAssignment\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"\
+    5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 7 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 9\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int = 5\n  }\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    9\")),[])]),Entity(\"BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 8 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 9\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DerivationAttribute(\"size\",TypePrimitive(Int),[Multiplicity2MultiplicityOrdering(One)],Literal(Int(\"\
+    9\")),[])]),Entity(\"BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"\
+    ))],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members-override.spt"
+  description: "no error on overriding field with correct derivation type 9 "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    size : Int = 9 (default)\n\
+    \  }\n\n  entity BasicAssignment extends Assignment {\n    size : Int = 5 (default)\n\
+    \  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[DefaultAttribute(\"size\",Int,[One],Literal(Int(\"9\")),[])]),Entity(\"\
+    BasicAssignment\",[OptionalExtends(Extends(\"Assignment\"))],[],[DefaultAttribute(\"\
+    size\",Int,[One],Literal(Int(\"5\")),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members.spt"
+  description: "resolve attribute subtype "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n    name : String\n\
+    \  }\n\n  entity AssignmentCollection extends Assignment {\n    bla : String =\
+    \ name\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[Attribute(\"name\",String,[One])]),Entity(\"AssignmentCollection\"\
+    ,[OptionalExtends(Extends(\"Assignment\"))],[],[DerivationAttribute(\"bla\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Ref(\"\
+    name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members.spt"
+  description: "unresolved member error "
+  text: "\n  module test\n  model\n  \n  entity Assignment {\n  }\n\n  entity AssignmentCollection\
+    \ extends Assignment {\n    bla : String = name\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Assignment\",[],[],[]),Entity(\"AssignmentCollection\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[DerivationAttribute(\"bla\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Ref(\"\
+    name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members.spt"
+  description: "resolve attribute subsubtype "
+  text: "\n  module test\n  model\n  \n  entity HasName {\n    name : String\n  }\n\
+    \  \n  entity Assignment extends HasName {\n  }\n\n  entity AssignmentCollection\
+    \ extends Assignment {\n    bla : String = name\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    HasName\",[],[],[Attribute(\"name\",String,[One])]),Entity(\"Assignment\",[OptionalExtends(Extends(\"\
+    HasName\"))],[],[]),Entity(\"AssignmentCollection\",[OptionalExtends(Extends(\"\
+    Assignment\"))],[],[DerivationAttribute(\"bla\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],Ref(\"\
+    name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members.spt"
+  description: "resolve relation subtype "
+  text: "\n  module test\n  model\n  \n  entity Photo{\n    name : String\n  }\n \
+    \ \n  entity HasPhoto{}\n  \n  relation HasPhoto.photo 1 <-> Photo\n  \n  entity\
+    \ Page extends HasPhoto {\n    photoName : String = photo.name\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Photo\",[],[],[Attribute(\"name\",String,[One])]),Entity(\"HasPhoto\",[],[],[]),Relation(\"\
+    HasPhoto\",[ID2DotID(\"photo\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Photo\",[ID2DotID(\"hasPhoto\")]),Entity(\"Page\",[OptionalExtends(Extends(\"\
+    HasPhoto\"))],[],[DerivationAttribute(\"photoName\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],MemberAccess(Ref(\"\
+    photo\"),\"name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/traits/members.spt"
+  description: "resolve relation attribute subtype "
+  text: "\n  module test\n  model\n  \n  entity Photo{\n    name : String\n  }\n \
+    \ \n  entity HasPhoto{}\n  \n  relation HasPhoto 1 <-> Photo\n  \n  entity Page\
+    \ extends HasPhoto {\n    photoName : String = photo.name\n  }\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Photo\",[],[],[Attribute(\"name\",String,[One])]),Entity(\"HasPhoto\",[],[],[]),Relation(\"\
+    HasPhoto\",[ID2DotID(\"photo\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(One))],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],\"\
+    Photo\",[ID2DotID(\"hasPhoto\")]),Entity(\"Page\",[OptionalExtends(Extends(\"\
+    HasPhoto\"))],[],[DerivationAttribute(\"photoName\",TypePrimitive(String),[Multiplicity2MultiplicityOrdering(One)],MemberAccess(Ref(\"\
+    photo\"),\"name\"),[])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on attribute and role with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  entity Student{  }\n  \n  relation Enrollment{\n    Student.enrollment\
+    \ * -> student\n    student : Int\n  }\n\n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([Entity(\"\
+    Student\",[],[],[]),FirstClassRelation(\"Enrollment\",[],[],[Role(\"Student\"\
+    ,[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Attribute(\"student\",Int,[One])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on attribute and inverse with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  entity Student{\n    enrollment : Int\n  }\n  \n  relation\
+    \ Enrollment{\n    Student.enrollment * -> student\n  }\n\n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([Entity(\"\
+    Student\",[],[],[Attribute(\"enrollment\",Int,[One])]),FirstClassRelation(\"Enrollment\"\
+    ,[],[],[Role(\"Student\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on attribute and shortcut with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  entity Student{\n    course : Int\n  }\n  \n  entity Course{\n\
+    \    \n  }\n  \n  relation Enrollment{\n    Student.enrollment * -> student\n\
+    \    Course.enrollment +  -> course\n    \n    student.course <-> course.student\n\
+    \  }\n\n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([Entity(\"\
+    Student\",[],[],[Attribute(\"course\",Int,[One])]),Entity(\"Course\",[],[],[]),FirstClassRelation(\"\
+    Enrollment\",[],[],[Role(\"Student\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(OneOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"course\")],\"course\",[ID2DotID(\"\
+    student\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on role and inverse with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  relation Student{\n    Enrollment.x * -> enrollment\n  }\n\
+    \  \n  relation Enrollment{\n    Student.enrollment * -> student\n  }\n\n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([FirstClassRelation(\"\
+    Student\",[],[],[Role(\"Enrollment\",[ID2DotID(\"x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    enrollment\")])]),FirstClassRelation(\"Enrollment\",[],[],[Role(\"Student\",[ID2DotID(\"\
+    enrollment\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on role and shortcut with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  relation Student{\n    Course.x * -> course\n  }\n  \n  entity\
+    \ Course{\n    \n  }\n  \n  relation Enrollment{\n    Student.y * -> student\n\
+    \    Course.z *  -> course\n    \n    student.course <-> course.student\n  }\n\
+    \n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([FirstClassRelation(\"\
+    Student\",[],[],[Role(\"Course\",[ID2DotID(\"x\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    course\")])]),Entity(\"Course\",[],[],[]),FirstClassRelation(\"Enrollment\",[],[],[Role(\"\
+    Student\",[ID2DotID(\"y\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"z\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"course\")],\"course\",[ID2DotID(\"\
+    student\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/members.spt"
+  description: "error on inverse and shortcut with same name "
+  text: "\n  module members\n\n  config\n  \n    language features : first-class relations\n\
+    \n  model\n  \n  \n  relation Student{\n    Course.student * -> course\n  }\n\
+    \  \n  entity Course{\n    \n  }\n  \n  relation Enrollment{\n    Student.y *\
+    \ -> student\n    Course.z *  -> course\n    \n    student.courseShort <-> course.student\n\
+    \  }\n\n\n"
+  ast: "Module(\"members\",[Incremental],[ConfigSection([LanguageFeatures([FirstClassRelations]),JavaBackend([Execute])]),ModelSection([FirstClassRelation(\"\
+    Student\",[],[],[Role(\"Course\",[ID2DotID(\"student\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    course\")])]),Entity(\"Course\",[],[],[]),FirstClassRelation(\"Enrollment\",[],[],[Role(\"\
+    Student\",[ID2DotID(\"y\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    student\")]),Role(\"Course\",[ID2DotID(\"z\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    course\")]),Shortcut(\"student\",[ID2DotID(\"courseShort\")],\"course\",[ID2DotID(\"\
+    student\")])])])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entityinstances.spt"
+  description: "Duplicate entity fails "
+  text: "\n  module test\n  model\n  entity User{}\n  \n  \n  data\n  u : User {}\n\
+    \  u : User {}\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    u\")],EntityType(\"User\"),[])),EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    u\")],EntityType(\"User\"),[]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entityinstances.spt"
+  description: "Resolve Identifier to entity "
+  text: "\n  module test\n  model\n  entity User{}\n  \n  \n  data\n  u : User {}\n\
+    \  execute\n  u\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    u\")],EntityType(\"User\"),[]))]),ExecuteSection([Exp2Execute(Ref(\"u\"))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/entityinstances.spt"
+  description: "Resolve invalid Identifier fails (entity instance) "
+  text: "\n  module test\n  model\n  entity User{}\n  \n  \n  data\n  u : User {}\n\
+    \  execute\n  v\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    User\",[],[],[])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    u\")],EntityType(\"User\"),[]))]),ExecuteSection([Exp2Execute(Ref(\"v\"))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Error on duplicate function name "
+  text: "\nmodule test\n  \nfunctions\n  test() : Int 1 = 5\n  test() : Int 1 = 5\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[],TypePrimitive(Int),[One],Literal(Int(\"5\"))),Function(\"test\",[],TypePrimitive(Int),[One],Literal(Int(\"\
+    5\")))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Resolve function name "
+  text: "\nmodule test\n  \nfunctions\n  test() : Int 1 = 5\nexecute\n  test()\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[],TypePrimitive(Int),[One],Literal(Int(\"5\")))]),ExecuteSection([Exp2Execute(Function(\"\
+    test\",[]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Error on call to non existing function "
+  text: "\nmodule test\n  \nfunctions\n  test() : Int 1 = 5\nexecute\n  foo()\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[],TypePrimitive(Int),[One],Literal(Int(\"5\")))]),ExecuteSection([Exp2Execute(Function(\"\
+    foo\",[]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Error on call with wrong number of arguments "
+  text: "\nmodule test\n  \nfunctions\n  test() : Int 1 = 5\nexecute\n  test(123)\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[],TypePrimitive(Int),[One],Literal(Int(\"5\")))]),ExecuteSection([Exp2Execute(Ref(\"\
+    test\")),Exp2Execute(Literal(Int(\"123\")))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Error on call with wrong number of arguments 2 "
+  text: "\nmodule test\n  \nfunctions\n  test(a: Int 1) : Int 1 = 5\nexecute\n  test()\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[Parameter(\"a\",TypePrimitive(Int),[One])],TypePrimitive(Int),[One],Literal(Int(\"\
+    5\")))]),ExecuteSection([Exp2Execute(Function(\"test\",[]))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/functions.spt"
+  description: "Error on call with wrong type "
+  text: "\nmodule test\n  \nfunctions\n  test(a: Int 1) : Int 1 = 5\nexecute\n  test(5.5)\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),FunctionSection([Function(\"\
+    test\",[Parameter(\"a\",TypePrimitive(Int),[One])],TypePrimitive(Int),[One],Literal(Int(\"\
+    5\")))]),ExecuteSection([Exp2Execute(Ref(\"test\")),Exp2Execute(Literal(Float(\"\
+    5.5\")))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcutrel.spt"
+  description: "Resolve to shortcut "
+  text: "\n  module test\n  \n   model\n  \n    entity Node{\n    \n    }\n    \n\
+    \    relation Node.parent ? <-> * Node.children {\n      weight : Int\n    }\n\
+    \  \n  data\n  \n    node1 : Node {}\n    \n  execute\n  \n    node1.parent\n\n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"NodeParentRelation\",[],[],[Role(\"Node\"\
+    ,[ID2DotID(\"parentRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],[ID2SpaceArrowID(\"\
+    children\")]),Role(\"Node\",[ID2DotID(\"childrenRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    parent\")]),Shortcut(\"parent\",[ID2DotID(\"children\")],\"children\",[ID2DotID(\"\
+    parent\")]),Attribute(\"weight\",Int,[One])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    node1\")],EntityType(\"Node\"),[]))]),ExecuteSection([Exp2Execute(MemberAccess(Ref(\"\
+    node1\"),\"parent\"))])])"
+- path: "file:///home/jesse/source/thesis/develop.test/static-semantics/names/shortcutrel.spt"
+  description: "Resolve invalid role in shortcut fails (shortcut relation) "
+  text: "\n  module test\n  \n   model\n  \n    entity Node{\n    \n    }\n    \n\
+    \    relation Node.parent ? <-> * Node.children {\n      weight : Int\n    }\n\
+    \  \n  data\n  \n    node1 : Node {}\n    \n  execute\n  \n    node1.iDoNotExist\n\
+    \n"
+  ast: "Module(\"test\",[Incremental],[ConfigSection([JavaBackend([Execute]),LanguageFeatures([DerivedRelations,Inlines,Strategies,SubTyping])]),ModelSection([Entity(\"\
+    Node\",[],[],[]),FirstClassRelation(\"NodeParentRelation\",[],[],[Role(\"Node\"\
+    ,[ID2DotID(\"parentRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrOne))],[ID2SpaceArrowID(\"\
+    children\")]),Role(\"Node\",[ID2DotID(\"childrenRelation\")],[MultiplicityOrdering2SpaceMultiplicity(Multiplicity2MultiplicityOrdering(ZeroOrMore))],[ID2SpaceArrowID(\"\
+    parent\")]),Shortcut(\"parent\",[ID2DotID(\"children\")],\"children\",[ID2DotID(\"\
+    parent\")]),Attribute(\"weight\",Int,[One])])]),DataSection([EntityInstance2Data(EntityInstance([ID2IDSpace(\"\
+    node1\")],EntityType(\"Node\"),[]))]),ExecuteSection([Exp2Execute(MemberAccess(Ref(\"\
+    node1\"),\"iDoNotExist\"))])])"

@@ -1,0 +1,950 @@
+---
+rules:
+  1:
+    id: 1
+    constraint: fileOk
+    head: fileOk(s, m@Module(id, opt, sections))
+    constructors:
+    - Module
+    path: statics/main.stx
+  2:
+    id: 2
+    constraint: programOk
+    head: programOk(m@Module(id, opt, sections))
+    constructors:
+    - Module
+    path: statics/main.stx
+  3:
+    id: 3
+    constraint: sectionOk
+    head: sectionOk(s, s_data, ConfigSection(_))
+    constructors:
+    - ConfigSection
+    path: statics/main.stx
+  4:
+    id: 4
+    constraint: sectionOk
+    head: sectionOk(s, s_data, FunctionSection(functions))
+    constructors:
+    - FunctionSection
+    path: statics/main.stx
+  5:
+    id: 5
+    constraint: sectionOk
+    head: sectionOk(s, s_data, DataSection(datas))
+    constructors:
+    - DataSection
+    path: statics/main.stx
+  6:
+    id: 6
+    constraint: sectionOk
+    head: sectionOk(s, s_data, ExecuteSection(executes))
+    constructors:
+    - ExecuteSection
+    path: statics/main.stx
+  7:
+    id: 7
+    constraint: executeOk
+    head: executeOk(s, Exp2Execute(exp))
+    constructors:
+    - Exp2Execute
+    path: statics/main.stx
+  8:
+    id: 8
+    constraint: modelOk
+    head: modelOk(s, Entity(id, optional_extends, strat, members))
+    constructors:
+    - Entity
+    path: statics/main.stx
+  9:
+    id: 9
+    constraint: modelOk
+    head: modelOk(s, RelationDerived(e1, r1, m1_optional, expr, m2_optional, e2, r2,
+      str))
+    constructors:
+    - RelationDerived
+    path: statics/main.stx
+  10:
+    id: 10
+    constraint: memberOk
+    head: memberOk(_, s, DerivationAttribute(id, type, mult, exp, [Inline()]))
+    constructors:
+    - DerivationAttribute
+    - Inline
+    path: statics/main.stx
+  11:
+    id: 11
+    constraint: memberOk
+    head: memberOk(_, s, DerivationAttribute(id, type, mult, exp, strat))
+    constructors:
+    - DerivationAttribute
+    path: statics/main.stx
+  12:
+    id: 12
+    constraint: memberOk
+    head: memberOk(_, s, DefaultAttribute(id, type, mult, exp, strat))
+    constructors:
+    - DefaultAttribute
+    path: statics/main.stx
+  13:
+    id: 13
+    constraint: memberOk
+    head: memberOk(_, s, Attribute(id, type, mult))
+    constructors:
+    - Attribute
+    path: statics/main.stx
+  14:
+    id: 14
+    constraint: memberOk
+    head: memberOk(_, s, AbstractAttribute(id, type, mult, strat))
+    constructors:
+    - AbstractAttribute
+    path: statics/main.stx
+  15:
+    id: 15
+    constraint: memberOk
+    head: memberOk(s_root, s, Role(entity, inverse, mult, role))
+    constructors:
+    - Role
+    path: statics/main.stx
+  16:
+    id: 16
+    constraint: memberOk
+    head: memberOk(s_root, s, Shortcut(role1, shortcut1, role2, shortcut2))
+    constructors:
+    - Shortcut
+    path: statics/main.stx
+  17:
+    id: 17
+    constraint: dataOk
+    head: dataOk(s, s_data, EntityInstance2Data(instance))
+    constructors:
+    - EntityInstance2Data
+    path: statics/data.stx
+  18:
+    id: 18
+    constraint: entityInstanceOk
+    head: entityInstanceOk(s_member_value, s_data, EntityInstance(name, type, member_values))
+    constructors:
+    - EntityInstance
+    path: statics/data.stx
+  19:
+    id: 19
+    constraint: entityInstanceOk
+    head: entityInstanceOk(s_member_value, s_data, EntityInstanceNoType(name, member_values))
+    constructors:
+    - EntityInstanceNoType
+    path: statics/data.stx
+  20:
+    id: 20
+    constraint: relationInstanceOk
+    head: relationInstanceOk(s_member_value, s_data, RelationInstance(name, type,
+      member_values))
+    constructors:
+    - RelationInstance
+    path: statics/data.stx
+  21:
+    id: 21
+    constraint: relationInstanceOk
+    head: relationInstanceOk(s_member_value, s_data, RelationInstanceNoType(name,
+      member_values))
+    constructors:
+    - RelationInstanceNoType
+    path: statics/data.stx
+  22:
+    id: 22
+    constraint: memberValueOk
+    head: memberValueOk(s_entity_instance, s_data, MemberValue(member_name, values))
+    constructors:
+    - MemberValue
+    path: statics/data.stx
+  23:
+    id: 23
+    constraint: typeOfValue
+    head: typeOfValue(_, _, _, LitVal(litval))
+    constructors:
+    - LitVal
+    path: statics/data.stx
+  24:
+    id: 24
+    constraint: typeOfValue
+    head: typeOfValue(s_member_value, s_data, member_type, EntityInstanceValue2Value(eiv))
+    constructors:
+    - EntityInstanceValue2Value
+    path: statics/data.stx
+  25:
+    id: 25
+    constraint: typeOfValue
+    head: typeOfValue(s_member_value, s_data, member_type, EntityInstanceWrapper(relation_instance,
+      entity_instance_value))
+    constructors:
+    - EntityInstanceWrapper
+    path: statics/data.stx
+  26:
+    id: 26
+    constraint: typeOfEntityInstanceValue
+    head: typeOfEntityInstanceValue(s_member_value, s_data, member_type, EntityInstanceRef(eir))
+    constructors:
+    - EntityInstanceRef
+    path: statics/data.stx
+  27:
+    id: 27
+    constraint: typeOfEntityInstanceValue
+    head: typeOfEntityInstanceValue(s_member_value, s_data, member_type, EntityInstance2EntityInstanceValue(ei))
+    constructors:
+    - EntityInstance2EntityInstanceValue
+    path: statics/data.stx
+  33:
+    id: 33
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, this@This())
+    constructors:
+    - This
+    path: statics/expressions/references.stx
+  34:
+    id: 34
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Ref(r))
+    constructors:
+    - Ref
+    path: statics/expressions/references.stx
+  35:
+    id: 35
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, MemberAccess(e, r))
+    constructors:
+    - MemberAccess
+    path: statics/expressions/references.stx
+  36:
+    id: 36
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Cast(e1, t))
+    constructors:
+    - Cast
+    path: statics/expressions/casts.stx
+  37:
+    id: 37
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, FilterType(e1, t))
+    constructors:
+    - FilterType
+    path: statics/expressions/casts.stx
+  38:
+    id: 38
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Addition(e1, e2))
+    constructors:
+    - Addition
+    path: statics/expressions/math.stx
+  39:
+    id: 39
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Subtraction(e1, e2))
+    constructors:
+    - Subtraction
+    path: statics/expressions/math.stx
+  40:
+    id: 40
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Division(e1, e2))
+    constructors:
+    - Division
+    path: statics/expressions/math.stx
+  41:
+    id: 41
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@FloorDivision(e1, e2))
+    constructors:
+    - FloorDivision
+    path: statics/expressions/math.stx
+  42:
+    id: 42
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Modulo(e1, e2))
+    constructors:
+    - Modulo
+    path: statics/expressions/math.stx
+  43:
+    id: 43
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Multiplication(e1, e2))
+    constructors:
+    - Multiplication
+    path: statics/expressions/math.stx
+  44:
+    id: 44
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Not(e1))
+    constructors:
+    - Not
+    path: statics/expressions/logic.stx
+  45:
+    id: 45
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Equal(e1, e2))
+    constructors:
+    - Equal
+    path: statics/expressions/logic.stx
+  46:
+    id: 46
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Inequal(e1, e2))
+    constructors:
+    - Inequal
+    path: statics/expressions/logic.stx
+  47:
+    id: 47
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@LessThan(e1, e2))
+    constructors:
+    - LessThan
+    path: statics/expressions/logic.stx
+  48:
+    id: 48
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@LessThanEqual(e1, e2))
+    constructors:
+    - LessThanEqual
+    path: statics/expressions/logic.stx
+  49:
+    id: 49
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@GreaterThan(e1, e2))
+    constructors:
+    - GreaterThan
+    path: statics/expressions/logic.stx
+  50:
+    id: 50
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@GreaterThanEqual(e1, e2))
+    constructors:
+    - GreaterThanEqual
+    path: statics/expressions/logic.stx
+  51:
+    id: 51
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@And(e1, e2))
+    constructors:
+    - And
+    path: statics/expressions/logic.stx
+  52:
+    id: 52
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Or(e1, e2))
+    constructors:
+    - Or
+    path: statics/expressions/logic.stx
+  53:
+    id: 53
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@If(e1, e2, e3))
+    constructors:
+    - If
+    path: statics/expressions/logic.stx
+  54:
+    id: 54
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@ChoiceLeft(e1, e2))
+    constructors:
+    - ChoiceLeft
+    path: statics/expressions/multiplicity-operators.stx
+  55:
+    id: 55
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Merge(e1, e2))
+    constructors:
+    - Merge
+    path: statics/expressions/multiplicity-operators.stx
+  56:
+    id: 56
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, e@Difference(e1, e2))
+    constructors:
+    - Difference
+    path: statics/expressions/multiplicity-operators.stx
+  57:
+    id: 57
+    constraint: richTypeOfExp
+    head: richTypeOfExp(_, Literal(litval))
+    constructors:
+    - Literal
+    path: statics/expressions/literals.stx
+  58:
+    id: 58
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Filter(e1, x, e2))
+    constructors:
+    - Filter
+    path: statics/expressions/collections.stx
+  59:
+    id: 59
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, OrderBy(e1, x, e2))
+    constructors:
+    - OrderBy
+    path: statics/expressions/collections.stx
+  60:
+    id: 60
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Find(e1, x, e2))
+    constructors:
+    - Find
+    path: statics/expressions/collections.stx
+  61:
+    id: 61
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("min", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  62:
+    id: 62
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("max", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  63:
+    id: 63
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("avg", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  64:
+    id: 64
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("sum", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  65:
+    id: 65
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("conj", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  66:
+    id: 66
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("disj", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  67:
+    id: 67
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("concat", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  68:
+    id: 68
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("count", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  69:
+    id: 69
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("first", [e1]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  70:
+    id: 70
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("first", [e1, e2]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  71:
+    id: 71
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("elemAt", [e1, e2]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  72:
+    id: 72
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function("indexOf", [e1, e2]))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  73:
+    id: 73
+    constraint: richTypeOfExp
+    head: richTypeOfExp(s, Function(f, es))
+    constructors:
+    - Function
+    path: statics/expressions/functions.stx
+  74:
+    id: 74
+    constraint: nameOfSpaceArrowID
+    head: nameOfSpaceArrowID(ID2SpaceArrowID(x))
+    constructors:
+    - ID2SpaceArrowID
+    path: statics/core.stx
+  75:
+    id: 75
+    constraint: nameOfDotID
+    head: nameOfDotID(ID2DotID(x))
+    constructors:
+    - ID2DotID
+    path: statics/core.stx
+  76:
+    id: 76
+    constraint: ameOfIDSpace
+    head: ameOfIDSpace(ID2IDSpace(x))
+    constructors:
+    - ID2IDSpace
+    path: statics/core.stx
+  77:
+    id: 77
+    constraint: multOfMult
+    head: multOfMult(One())
+    constructors:
+    - One
+    path: statics/core.stx
+  78:
+    id: 78
+    constraint: multOfMult
+    head: multOfMult(ZeroOrOne())
+    constructors:
+    - ZeroOrOne
+    path: statics/core.stx
+  79:
+    id: 79
+    constraint: multOfMult
+    head: multOfMult(OneOrMore())
+    constructors:
+    - OneOrMore
+    path: statics/core.stx
+  80:
+    id: 80
+    constraint: multOfMult
+    head: multOfMult(ZeroOrMore())
+    constructors:
+    - ZeroOrMore
+    path: statics/core.stx
+  81:
+    id: 81
+    constraint: multOfSpaceMultiplicity
+    head: multOfSpaceMultiplicity(MultiplicityOrdering2SpaceMultiplicity(x))
+    constructors:
+    - MultiplicityOrdering2SpaceMultiplicity
+    path: statics/core.stx
+  82:
+    id: 82
+    constraint: multOfMultOrd
+    head: multOfMultOrd(Multiplicity2MultiplicityOrdering(x))
+    constructors:
+    - Multiplicity2MultiplicityOrdering
+    path: statics/core.stx
+  83:
+    id: 83
+    constraint: multOfMultOrd
+    head: multOfMultOrd(OneOrMoreOrdered())
+    constructors:
+    - OneOrMoreOrdered
+    path: statics/core.stx
+  84:
+    id: 84
+    constraint: multOfMultOrd
+    head: multOfMultOrd(ZeroOrMoreOrdered())
+    constructors:
+    - ZeroOrMoreOrdered
+    path: statics/core.stx
+  85:
+    id: 85
+    constraint: zeroness
+    head: zeroness(Literal(Float(i)))
+    constructors:
+    - Literal
+    - Float
+    path: statics/core.stx
+  86:
+    id: 86
+    constraint: zeroness
+    head: zeroness(Literal(Int("0")))
+    constructors:
+    - Literal
+    - Int
+    path: statics/core.stx
+  87:
+    id: 87
+    constraint: zeroness
+    head: zeroness(Literal(Int(_)))
+    constructors:
+    - Literal
+    - Int
+    path: statics/core.stx
+  88:
+    id: 88
+    constraint: stratOfStrat
+    head: stratOfStrat(Incremental())
+    constructors:
+    - Incremental
+    path: statics/core.stx
+  89:
+    id: 89
+    constraint: stratOfStrat
+    head: stratOfStrat(OnDemand())
+    constructors:
+    - OnDemand
+    path: statics/core.stx
+  90:
+    id: 90
+    constraint: stratOfStrat
+    head: stratOfStrat(OnDemandIncremental())
+    constructors:
+    - OnDemandIncremental
+    path: statics/core.stx
+  91:
+    id: 91
+    constraint: stratOfStrat
+    head: stratOfStrat(Eventual())
+    constructors:
+    - Eventual
+    path: statics/core.stx
+  92:
+    id: 92
+    constraint: stratOfStrat
+    head: stratOfStrat(OnDemandEventual())
+    constructors:
+    - OnDemandEventual
+    path: statics/core.stx
+  93:
+    id: 93
+    constraint: typeOfAnyType
+    head: typeOfAnyType(_, TypePrimitive(t))
+    constructors:
+    - TypePrimitive
+    path: statics/core.stx
+  94:
+    id: 94
+    constraint: typeOfAnyType
+    head: typeOfAnyType(s, TypeEntity(x))
+    constructors:
+    - TypeEntity
+    path: statics/core.stx
+  95:
+    id: 95
+    constraint: typeOfPrimitiveType
+    head: typeOfPrimitiveType(Boolean())
+    constructors:
+    - Boolean
+    path: statics/core.stx
+  96:
+    id: 96
+    constraint: typeOfPrimitiveType
+    head: typeOfPrimitiveType(Float())
+    constructors:
+    - Float
+    path: statics/core.stx
+  97:
+    id: 97
+    constraint: typeOfPrimitiveType
+    head: typeOfPrimitiveType(Datetime())
+    constructors:
+    - Datetime
+    path: statics/core.stx
+  98:
+    id: 98
+    constraint: typeOfPrimitiveType
+    head: typeOfPrimitiveType(Int())
+    constructors:
+    - Int
+    path: statics/core.stx
+  99:
+    id: 99
+    constraint: typeOfPrimitiveType
+    head: typeOfPrimitiveType(String())
+    constructors:
+    - String
+    path: statics/core.stx
+  100:
+    id: 100
+    constraint: typeOfEntityType
+    head: typeOfEntityType(s, EntityType(id))
+    constructors:
+    - EntityType
+    path: statics/core.stx
+  101:
+    id: 101
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(Int(_))
+    constructors:
+    - Int
+    path: statics/core.stx
+  102:
+    id: 102
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(Float(_))
+    constructors:
+    - Float
+    path: statics/core.stx
+  103:
+    id: 103
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(True())
+    constructors:
+    - 'True'
+    path: statics/core.stx
+  104:
+    id: 104
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(False())
+    constructors:
+    - 'False'
+    path: statics/core.stx
+  105:
+    id: 105
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(String(_))
+    constructors:
+    - String
+    path: statics/core.stx
+  106:
+    id: 106
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(Datetime(_))
+    constructors:
+    - Datetime
+    path: statics/core.stx
+  107:
+    id: 107
+    constraint: richTypeOfLitVal
+    head: richTypeOfLitVal(NoValue())
+    constructors:
+    - NoValue
+    path: statics/core.stx
+  108:
+    id: 108
+    constraint: declareInheritance
+    head: declareInheritance(s_entity, entity_id, [extends_decl@OptionalExtends(node@Extends(parent_entity))])
+    constructors:
+    - OptionalExtends
+    - Extends
+    path: statics/core.stx
+  109:
+    id: 109
+    constraint: functionOk
+    head: functionOk(s, Function(f, ps, t, m, e))
+    constructors:
+    - Function
+    path: statics/functions.stx
+  110:
+    id: 110
+    constraint: parameterOk
+    head: parameterOk(s, param@Parameter(p, t, m))
+    constructors:
+    - Parameter
+    path: statics/functions.stx
+  111:
+    id: 111
+    constraint: richtypeOfParameter
+    head: richtypeOfParameter(s, Parameter(p, t, m))
+    constructors:
+    - Parameter
+    path: statics/functions.stx
+constructors:
+  Module:
+  - 1
+  - 2
+  ConfigSection:
+  - 3
+  FunctionSection:
+  - 4
+  DataSection:
+  - 5
+  ExecuteSection:
+  - 6
+  Exp2Execute:
+  - 7
+  Entity:
+  - 8
+  RelationDerived:
+  - 9
+  DerivationAttribute:
+  - 10
+  - 11
+  Inline:
+  - 10
+  DefaultAttribute:
+  - 12
+  Attribute:
+  - 13
+  AbstractAttribute:
+  - 14
+  Role:
+  - 15
+  Shortcut:
+  - 16
+  EntityInstance2Data:
+  - 17
+  EntityInstance:
+  - 18
+  EntityInstanceNoType:
+  - 19
+  RelationInstance:
+  - 20
+  RelationInstanceNoType:
+  - 21
+  MemberValue:
+  - 22
+  LitVal:
+  - 23
+  EntityInstanceValue2Value:
+  - 24
+  EntityInstanceWrapper:
+  - 25
+  EntityInstanceRef:
+  - 26
+  EntityInstance2EntityInstanceValue:
+  - 27
+  Literal:
+  - 57
+  - 85
+  - 86
+  - 87
+  This:
+  - 33
+  Ref:
+  - 34
+  MemberAccess:
+  - 35
+  Cast:
+  - 36
+  FilterType:
+  - 37
+  Addition:
+  - 38
+  Subtraction:
+  - 39
+  Division:
+  - 40
+  FloorDivision:
+  - 41
+  Modulo:
+  - 42
+  Multiplication:
+  - 43
+  Not:
+  - 44
+  Equal:
+  - 45
+  Inequal:
+  - 46
+  LessThan:
+  - 47
+  LessThanEqual:
+  - 48
+  GreaterThan:
+  - 49
+  GreaterThanEqual:
+  - 50
+  And:
+  - 51
+  Or:
+  - 52
+  If:
+  - 53
+  ChoiceLeft:
+  - 54
+  Merge:
+  - 55
+  Difference:
+  - 56
+  Filter:
+  - 58
+  OrderBy:
+  - 59
+  Find:
+  - 60
+  Function:
+  - 61
+  - 62
+  - 63
+  - 64
+  - 65
+  - 66
+  - 67
+  - 68
+  - 69
+  - 70
+  - 71
+  - 72
+  - 73
+  - 109
+  ID2SpaceArrowID:
+  - 74
+  ID2DotID:
+  - 75
+  ID2IDSpace:
+  - 76
+  One:
+  - 77
+  ZeroOrOne:
+  - 78
+  OneOrMore:
+  - 79
+  ZeroOrMore:
+  - 80
+  MultiplicityOrdering2SpaceMultiplicity:
+  - 81
+  Multiplicity2MultiplicityOrdering:
+  - 82
+  OneOrMoreOrdered:
+  - 83
+  ZeroOrMoreOrdered:
+  - 84
+  Float:
+  - 85
+  - 96
+  - 102
+  Int:
+  - 86
+  - 87
+  - 98
+  - 101
+  Incremental:
+  - 88
+  OnDemand:
+  - 89
+  OnDemandIncremental:
+  - 90
+  Eventual:
+  - 91
+  OnDemandEventual:
+  - 92
+  TypePrimitive:
+  - 93
+  TypeEntity:
+  - 94
+  Boolean:
+  - 95
+  Datetime:
+  - 97
+  - 106
+  String:
+  - 99
+  - 105
+  EntityType:
+  - 100
+  'True':
+  - 103
+  'False':
+  - 104
+  NoValue:
+  - 107
+  OptionalExtends:
+  - 108
+  Extends:
+  - 108
+  Parameter:
+  - 110
+  - 111
